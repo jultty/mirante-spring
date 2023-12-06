@@ -1,9 +1,10 @@
-package mirante.api;
+package mirante.api.account;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 class AccountController {
@@ -27,7 +28,9 @@ class AccountController {
   @GetMapping("/account/{id}")
   Account one(@PathVariable String id) {
     return repository.findById(id)
-      .orElseThrow(() -> new AccountNotFoundException(id));
+      .orElseThrow(() -> new ResponseStatusException(
+            HttpStatus.NOT_FOUND, "Account with id ${id} not found")
+          );
   }
 
   @DeleteMapping("/account/{id}")
