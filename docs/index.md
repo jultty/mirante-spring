@@ -1,5 +1,0 @@
----
-title: início
-layout: home
----
-
