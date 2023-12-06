@@ -12,6 +12,15 @@ public class Account {
   private String email;
   private String password;
 
+  public Account() {}
+
+  public Account(String username, String name, String email, String password) {
+    this.username = username;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+  }
+
   public String getUsername() {
     return username;
   }
@@ -37,8 +46,7 @@ public class Account {
   }
 
   public String getPassword() {
-    if (password != null) return "set";
-    else return "null";
+    return password;
   }
 
   public void setPassword(String password) {
