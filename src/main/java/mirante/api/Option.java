@@ -1,7 +1,11 @@
 package mirante.api;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -10,9 +14,13 @@ public class Option {
   @JsonProperty("place") private Integer place;
   @JsonProperty("content") private String content;
 
+  @JsonProperty("exercise_id")
+  @ManyToOne @JoinColumn(name = "EXERCISE_OPTION", referencedColumnName = "id")
+  private Exercise exercise;
+
   public Option() {}
 
-  public Option(String id, Integer place, String content) {
+  public Option(String id, Integer place, String content, String exercise_id) {
     this.id = id;
     this.place = place;
     this.content = content;

@@ -25,14 +25,6 @@ class ExerciseController {
     return repository.save(newExercise);
   }
 
-  @PostMapping("/{exercise_id}/option")
-  @ResponseStatus(HttpStatus.CREATED)
-  Exercise addOption(@PathVariable String exercise_id, @RequestBody Option option) {
-    Exercise newExercise = repository.findById(exercise_id).orElse(null);
-    newExercise.addOption(option);
-    return repository.save(newExercise);
-  }
-
   @GetMapping("/exercise/{id}")
   Exercise one(@PathVariable String id) {
     return repository.findById(id)

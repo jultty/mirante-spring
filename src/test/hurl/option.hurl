@@ -3,7 +3,9 @@ POST http://localhost:8080/option
 {
     "id": "xyz0003",
     "place": 3,
-    "content": "Lorem ipsum sit dolor amet"
+    "content": "Lorem ipsum sit dolor amet",
+    "exercise_id": "ex0001A"
+
 }
 
 HTTP 201
