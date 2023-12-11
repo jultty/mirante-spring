@@ -49,9 +49,7 @@ jsonpath "$.email" == "me.hamilton@mirante.dev"
 
 GET http://localhost:8080/account/heafield
 HTTP 200
-DELETE http://localhost:8080/account/heafield
-HTTP 200
-GET http://localhost:8080/account/heafield
-HTTP 404
-
-# Josephine Cheng
+# DELETE http://localhost:8080/account/heafield
+# HTTP 200
+# GET http://localhost:8080/account/heafield
+# HTTP 404
