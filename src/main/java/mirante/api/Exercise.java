@@ -5,11 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Exercise {
   
-  @Id 
+  @Id @JsonProperty("id")
   private String id;
 
   @OneToMany
@@ -20,6 +21,10 @@ public class Exercise {
 
   public Exercise(String id) {
     this.id = id;
+  }
+
+  public void addOption(Option option) {
+    options.add(option);
   }
 }
 
