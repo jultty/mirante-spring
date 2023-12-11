@@ -1,4 +1,4 @@
-package mirante.api;
+package mirante.api.exercise.option;
 
 import java.util.List;
 

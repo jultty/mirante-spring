@@ -1,6 +1,7 @@
-package mirante.api;
+package mirante.api.exercise.option;
 
-import jakarta.persistence.Column;
+import mirante.api.exercise.Exercise;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;

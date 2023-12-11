@@ -1,4 +1,4 @@
-package mirante.api;
+package mirante.api.exercise;
 
 import java.util.Set;
 import jakarta.persistence.Entity;
