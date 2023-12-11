@@ -15,7 +15,7 @@ public class Option {
   @JsonProperty("content") private String content;
 
   @JsonProperty("exercise_id")
-  @ManyToOne @JoinColumn(name = "EXERCISE_OPTION", referencedColumnName = "id")
+  @ManyToOne @JoinColumn(name = "exercise_option", referencedColumnName = "id")
   private Exercise exercise;
 
   public Option() {}
