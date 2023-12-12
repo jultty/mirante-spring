@@ -1,0 +1,10 @@
+@startuml
+hide footbox
+
+SpringApplication -> AccountController: newAccount(@RequestBody newAccount)
+AccountController -> Account: Account(username, name, email, password)
+Account -> AccountController: Account
+AccountController -> AccountRepository: save(Account)
+AccountRepository --> AccountController: Account
+AccountController --> SpringApplication: HTTP 201 CREATED
+@enduml

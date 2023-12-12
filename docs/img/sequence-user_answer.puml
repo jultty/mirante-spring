@@ -1,0 +1,12 @@
+@startuml
+hide footbox
+actor User
+
+User -> System: Ask for all exercise options
+System --> User: All options data
+User -> System: Sends back exercise results
+System --> User: New event data
+User -> System: Delete event
+System --> User: Forbidden Response
+
+@enduml

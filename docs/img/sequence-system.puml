@@ -1,0 +1,24 @@
+@startuml
+hide footbox
+
+SpringApplication -> ExerciseSetController: newExerciseSet(@RequestBody newExerciseSet)
+ExerciseSetController -> ExerciseSet: ExerciseSet(id, name)
+ExerciseSet --> ExerciseSetController: ExerciseSet
+ExerciseSetController -> ExerciseSetRepository: save(ExerciseSet)
+ExerciseSetRepository --> ExerciseSetController: ExerciseSet
+ExerciseSetController  --> SpringApplication: HTTP 201 CREATED
+
+SpringApplication -> ExerciseController: newExercise(@RequestBody newExercise)
+ExerciseController -> Exercise: Exercise(id, name)
+Exercise -> ExerciseController: Exercise
+ExerciseController -> ExerciseRepository: save(Exercise)
+ExerciseRepository --> ExerciseController: Exercise
+ExerciseController  --> SpringApplication: HTTP 201 CREATED
+
+SpringApplication -> OptionController: newOption(@RequestBody newOption)
+OptionController -> Option: Option(id, place, content, correct)
+Option -> OptionController: Option
+OptionController -> OptionRepository: save(Option)
+OptionRepository --> OptionController: Option
+OptionController  --> SpringApplication: HTTP 201 CREATED
+@enduml

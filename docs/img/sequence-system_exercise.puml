@@ -1,0 +1,8 @@
+@startuml
+hide footbox
+
+ExerciseController -> Exercise: Exercise(id, name)
+Exercise -> ExerciseController: Exercise
+ExerciseController -> ExerciseRepository: save(Exercise)
+ExerciseRepository --> ExerciseController: Exercise
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+
+package event {
+class EventController {
+  - repository: EventRepository
+  + all(): List<Event>
+  + newEvent(newEvent: Event): Event
+  + one(id: String): Event
+}
+
+class Event {
+  - id: long
+  - timestamp: Timestamp
+  - description: String
+  - content: String
+}
+
+interface EventRepository {
+  + save(event: Event): Event
+  + findById(id: String): Optional<Event>
+  + findAll(): List<Event>
+}
+}
+
+EventRepository --o Event
+EventController --o Event
+
+@enduml

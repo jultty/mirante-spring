@@ -1,0 +1,7 @@
+@startuml
+hide footbox
+
+SpringApplication -> OptionController: deleteOption(id)
+OptionController -> OptionRepository: deleteById(id)
+OptionController --> SpringApplication: HTTP 200 OK
+@enduml

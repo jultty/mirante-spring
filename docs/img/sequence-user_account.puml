@@ -1,0 +1,12 @@
+@startuml
+hide footbox
+actor User
+
+User -> System: Account details
+System --> User: Account data
+User -> System: Updated account details
+System --> User: Updated account data
+User -> System: Delete account request
+System --> User: OK Response
+
+@enduml

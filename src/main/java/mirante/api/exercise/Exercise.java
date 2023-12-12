@@ -30,6 +30,11 @@ public class Exercise {
     this.id = id;
   }
 
+  public Exercise(String id, String instruction) {
+    this.id = id;
+    this.instruction = instruction;
+  }
+
   public void addOption(Option option) {
     options.add(option);
   }

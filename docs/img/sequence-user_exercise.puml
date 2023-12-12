@@ -1,0 +1,19 @@
+@startuml
+hide footbox
+actor User
+
+User -> System: Create exercise set
+System --> User: New exercise set data
+User -> System: Create new exercise
+System --> User: New exercise data
+User -> System: Add exercise to exercise set
+System --> User: OK Response
+User -> System: Add option 
+System --> User: New option data
+User -> System: Add option to exercise
+System --> User: OK Response
+User -> System: Delete exercise 
+System --> User: OK Response
+User -> System: Delete exercise set
+
+@enduml

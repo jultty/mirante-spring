@@ -1,0 +1,131 @@
+@startuml
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+
+package mirante.api.account {
+class Account {
+  - username: String
+  - name: String
+  - email: String
+  - password: String
+}
+}
+
+package mirante.api.event {
+class EventController {
+  - repository: EventRepository
+  + all(): List<Event>
+  + newEvent(newEvent: Event): Event
+  + one(id: String): Event
+}
+
+class Event {
+  - id: long
+  - timestamp: Timestamp
+  - description: String
+  - content: String
+}
+
+interface EventRepository {
+  + save(event: Event): Event
+  + findById(id: String): Optional<Event>
+  + findAll(): List<Event>
+  + deleteById(id: String): void
+}
+}
+
+EventRepository --> Event
+EventController --> Event
+
+package mirante.api.exercise {
+
+class ExerciseController {
+  - repository: ExerciseRepository
+  + all(): List<Exercise>
+  + newExercise(newExercise: Exercise): Exercise
+  + one(id: String): Exercise
+  + deleteExercise(id: String): void
+}
+
+class Exercise {
+  - id: String
+  - instruction: String
+  - options: Set<Option>
+  - set: ExerciseSet
+  + addOption(option: Option): void
+}
+
+class ExerciseSet {
+  - id: String
+  - name: String
+  - exercises: Set<Exercise>
+}
+
+interface ExerciseRepository {
+  + save(exercise: Exercise): Exercise
+  + findById(id: String): Optional<Exercise>
+  + findAll(): List<Exercise>
+  + deleteById(id: String): void
+}
+
+class ExerciseSetController {
+  - repository: ExerciseSetRepository
+  + all(): List<ExerciseSet>
+  + newExerciseSet(newExerciseSet: ExerciseSet): ExerciseSet
+  + one(id: String): ExerciseSet
+  + deleteExerciseSet(id: String): void
+}
+
+interface ExerciseSetRepository {
+  + save(exerciseSet: ExerciseSet): ExerciseSet
+  + findById(id: String): Optional<ExerciseSet>
+  + findAll(): List<ExerciseSet>
+  + deleteById(id: String): void
+}
+package mirante.api.exercise.option {
+
+class OptionController {
+  - repository: OptionRepository
+  + all(): List<Option>
+  + newOption(newOption: Option): Option
+  + one(id: String): Option
+  + deleteOption(id: String): void
+}
+
+class Option {
+  - id: String
+  - content: String
+  - place: Integer
+  - correct: Boolean
+  - exercise: Exercise
+}
+
+interface OptionRepository {
+  + save(option: Option): Option
+  + findById(id: String): Optional<Option>
+  + findAll(): List<Option>
+  + deleteById(id: String): void
+}
+
+}
+}
+
+ExerciseSet --o Exercise
+Exercise --o Option
+
+OptionController --o Option
+OptionRepository --o Option
+OptionController --> OptionRepository 
+
+ExerciseController --o Exercise
+ExerciseRepository --o Exercise
+ExerciseController --> ExerciseRepository
+
+ExerciseSetRepository --o ExerciseSet
+ExerciseSetController --o ExerciseSet
+ExerciseSetController --> ExerciseSetRepository
+
+
+@enduml
+
+
