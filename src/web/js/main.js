@@ -31,7 +31,7 @@ exerciseSetDropdown.addEventListener('input', function () {
     exerciseContainer.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      const form = document.getElementById('exerciseSetForm_' + selectedSet.id)
+      const form = document.querySelector('form'); 
       const checkboxes = Array.from(form.querySelectorAll('input[type="checkbox"]'));
 
       const selectedOptions = checkboxes
@@ -99,9 +99,6 @@ function populateExerciseContainer(exercises) {
 
   exerciseContainer.innerHTML = '';
   const form = document.createElement('form');
-  form.setAttribute(
-    'id', `exerciseSetForm_${exercises[0].options[0].exercise_id.set_id.id}`
-  );
   exerciseContainer.appendChild(form);
 
   exercises.forEach(exercise => {
