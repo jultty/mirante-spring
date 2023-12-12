@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+@CrossOrigin
 @RestController
 class OptionController {
   private final OptionRepository repository;
@@ -14,6 +15,7 @@ class OptionController {
     this.repository = repository;
   }
 
+  @CrossOrigin(origins = "*")
   @GetMapping("/option")
   List<Option> all() {
     return repository.findAll();

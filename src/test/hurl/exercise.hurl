@@ -28,7 +28,7 @@ HTTP 201
 
 POST http://localhost:8080/exercise
 {
-    "id": "ex0004A",
+    "id": "ex0004T",
     "instruction": "Proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",
     "set_id": "exset0002T"
 }

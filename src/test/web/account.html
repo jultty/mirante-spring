@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>mirante-dev</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <form action="http://localhost:8080/account" method="POST">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name"><br>
+
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br>
+
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br>
+
+      <input type="hidden" name="data" id="data">
+
+      <input type="submit" value="Submit">
+    </form>
+    <nav>
+      <ul>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="exercise-set.html">Exercise Set</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="option.html">Option</a></li>
+      </ul>
+    </nav>
+  </body>
+
+  <script>
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+
+  event.preventDefault();
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', form.action);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  const data = {
+    name: form.elements.name.value,
+    username: form.elements.username.value,
+    email: form.elements.email.value,
+    password: form.elements.password.value,
+  };
+
+  xhr.send(JSON.stringify(data));
+  form.reset();
+
+
+});
+  </script>
+
+</html>

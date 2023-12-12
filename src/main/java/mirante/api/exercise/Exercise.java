@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Exercise {
   
   @Id @JsonProperty("id") private String id;
+  @JsonProperty("instruction") private String instruction;
 
   @OneToMany
   @JoinColumn(name = "exercise_option")

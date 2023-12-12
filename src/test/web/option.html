@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>mirante-dev</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <form action="http://localhost:8080/option" method="POST">
+      <label for="ID">Id:</label><br>
+      <input type="text" id="id" name="id"><br>
+
+      <label for="exercise_id">Exercise ID:</label><br>
+      <input type="exercise_id" id="exercise_id" name="exercise_id"><br>
+
+      <label for="content">Content:</label><br>
+      <input type="content" id="content" name="content"><br>
+
+      <label for="place">Order number:</label><br>
+      <input type="number" id="place" name="place"><br>
+
+      <input type="checkbox" id="correct" name="correct">
+      <label for="correct">Correct</label><br>
+
+      <input type="submit" value="Submit">
+    </form>
+    <nav>
+      <ul>
+        <li><a href="account.html">Account</a></li>
+        <li><a href="exercise-set.html">Exercise Set</a></li>
+        <li><a href="exercise.html">Exercise</a></li>
+        <li><a href="option.html">Option</a></li>
+      </ul>
+    </nav>
+  </body>
+
+  <script>
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+
+  event.preventDefault();
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', form.action);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  const data = {
+    id: form.elements.id.value,
+    content: form.elements.content.value,
+    place: form.elements.place.value,
+    exercise_id: form.elements.exercise_id.value,
+    correct: form.elements.correct.checked,
+  };
+
+  xhr.send(JSON.stringify(data));
+  form.reset();
+
+});
+  </script>
+
+</html>
