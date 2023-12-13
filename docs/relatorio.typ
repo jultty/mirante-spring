@@ -121,7 +121,7 @@ Este caso de uso está mais relacionado à possibilidade de armazenar dados sobr
 = Estrutura de Classes
 
 #figure(
-  image("img/exercise-class.png", width: 100%),
+  image("img/class-exercise.png", width: 100%),
   caption: [
     Diagrama de classes do subpacote `exercise`.
   ]
@@ -151,14 +151,13 @@ O código abaixo, que mostra a resposta crua em `JSON` obtida do _endpoint_ `opt
       }
     }
   }
-)
 ```
 ]
 
 #pagebreak()
 == Subpacote `event`
 #figure(
-  image("img/event-class.png", width: 100%),
+  image("img/class-event.png", width: 100%),
   caption: [
     Diagrama de classes do subpacote `exercise`.
   ]
@@ -167,6 +166,18 @@ O código abaixo, que mostra a resposta crua em `JSON` obtida do _endpoint_ `opt
 O subpacote de eventos não estabelece relações diretas com as outras entidades do sistema. No detalhe acima, ele aparece mostrando apenas as agregações feitas por seu controlador e repositório. Quando inserido, o evento contém no campo `content` uma descrição textual do que especificamente define o evento.
 
 No caso do evento que aparece neste protótipo, tratam-se dos identificadores das alternativas escolhidas. Não se trata de uma chave estrangeira, mas do identificador na forma de texto puro, separado por vírgulas. Embora isto signifique que alterações não-documentadas podem causar perda de informação, também significa que o registro preciso do que aconteceu naquele ponto no tempo não será perdido. Aliado a outros dados complementares, este registro de eventos pode portanto ser uma ferramenta essencial no processo de análise.
+
+== Subpacote `account`
+#figure(
+  image("img/class-account.png", width: 100%),
+  caption: [
+    Diagrama de classes do subpacote `account`.
+  ]
+)
+
+O subpacote `account` contém a classe, seu controlador e repositório., `Account` define os dados `name`, `username`, `email`, 'password'.
+
+O sistema prevê como requisito a possibilidade de criar contas, mas em sua versão atual não oferece um mecanismo de autenticação que permita, por exemplo, limitar o acesso a determinados conjuntos de exercício de acordo com a autorização para acessá-los.
 
 #pagebreak()
 = Diagramas de sequência dos casos de uso
