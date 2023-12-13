@@ -4,7 +4,7 @@ var uniqueSets;
 var options;
 
 // get the exercise sets from the backend
-fetch('http://localhost:8080/option')
+fetch('http://localhost:8888/option')
   .then(response => response.json())
   .then(data => {
     options = data;
@@ -61,7 +61,7 @@ function reportSelection(selection, setOptions) {
   console.log(`Correctly Checked: ${correctCount} Incorrectly Checked: ${incorrectCount}`);
 
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:8080/event');
+  xhr.open('POST', 'http://localhost:8888/event');
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   const data = {

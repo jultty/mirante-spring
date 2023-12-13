@@ -1,5 +1,5 @@
 # client can create an exercise
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0001T",
     "instruction": "exercise test instruction containing a longer string",
@@ -8,7 +8,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0002T",
     "instruction": "Lorem ipsum dolor sit amet, qui minim labore",
@@ -17,7 +17,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0003T",
     "instruction": "Proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",
@@ -26,7 +26,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0004T",
     "instruction": "Proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",
@@ -35,7 +35,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0005T",
     "instruction": "Proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",
@@ -44,7 +44,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ex0006T",
     "instruction": "Proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod.",

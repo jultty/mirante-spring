@@ -1,5 +1,5 @@
 # client can create an option
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0003",
     "content": "Lorem ipsum sit dolor amet",
@@ -11,7 +11,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0004",
     "place": 3,
@@ -23,7 +23,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0005",
     "place": 1,
@@ -35,7 +35,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0006",
     "place": 2,
@@ -47,7 +47,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0007",
     "place": 1,
@@ -60,7 +60,7 @@ POST http://localhost:8080/option
 HTTP 201
 
 # exercise 4
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0048",
     "place": 1,
@@ -71,7 +71,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0047",
     "place": 2,
@@ -82,7 +82,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0046",
     "place": 3,
@@ -94,7 +94,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 # exercise 5
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0056",
     "place": 1,
@@ -105,7 +105,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0057",
     "place": 2,
@@ -116,7 +116,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "xyz0058",
     "place": 3,

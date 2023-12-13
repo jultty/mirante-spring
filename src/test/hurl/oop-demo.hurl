@@ -1,4 +1,4 @@
-POST http://localhost:8080/account
+POST http://localhost:8888/account
 {
     "username": "anab",
     "name": " Ana B.",
@@ -8,7 +8,7 @@ POST http://localhost:8080/account
 
 HTTP 201
 
-POST http://localhost:8080/exercise-set
+POST http://localhost:8888/exercise-set
 {
     "id": "exercise-set-0001",
     "name": "exercise set one"
@@ -16,7 +16,7 @@ POST http://localhost:8080/exercise-set
 
 HTTP 201
 
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "exercise-0001",
     "set_id": "exercise-set-0001",
@@ -25,7 +25,7 @@ POST http://localhost:8080/exercise
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-0001-A",
     "content": "Polymorphism",
@@ -36,7 +36,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-0001-B",
     "content": "Inheritance",
@@ -47,7 +47,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-0001-C",
     "content": "Encapsulation",
@@ -58,7 +58,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-0001-D",
     "content": "Static Members",
@@ -69,7 +69,7 @@ POST http://localhost:8080/option
 
 HTTP 201
 
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-0001-E",
     "content": "Interfaces",

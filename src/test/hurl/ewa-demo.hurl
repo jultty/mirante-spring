@@ -1,12 +1,12 @@
 # exercise 1
-POST http://localhost:8080/exercise-set
+POST http://localhost:8888/exercise-set
 {
     "id": "EWA_DEMO_PDC",
     "name": "Paradigmas da Programação"
 }
 
 HTTP 201
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ewa-pdc-0001",
     "set_id": "EWA_DEMO_PDC",
@@ -14,7 +14,7 @@ POST http://localhost:8080/exercise
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0001A",
     "content": "Polimorfismo",
@@ -24,7 +24,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0001B",
     "content": "Herança",
@@ -34,7 +34,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0001C",
     "content": "Membros Estáticos",
@@ -44,7 +44,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0001D",
     "content": "Encapsulamento",
@@ -54,7 +54,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0001E",
     "content": "Composição",
@@ -66,7 +66,7 @@ POST http://localhost:8080/option
 HTTP 201
 
 # exercise 2
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ewa-pdc-0002",
     "set_id": "EWA_DEMO_PDC",
@@ -74,7 +74,7 @@ POST http://localhost:8080/exercise
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0002A",
     "content": "abstração",
@@ -84,7 +84,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0002B",
     "content": "derivação",
@@ -94,7 +94,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0002C",
     "content": "encapsulamento",
@@ -104,7 +104,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0002E",
     "content": "herança",
@@ -114,7 +114,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0002F",
     "content": "polimorfismo",
@@ -126,7 +126,7 @@ POST http://localhost:8080/option
 HTTP 201
 
 # exercise 3
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ewa-pdc-0003",
     "set_id": "EWA_DEMO_PDC",
@@ -134,7 +134,7 @@ POST http://localhost:8080/exercise
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0003A",
     "content": "compostas",
@@ -144,7 +144,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0003B",
     "content": "em lote",
@@ -154,7 +154,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0003C",
     "content": "iteráveis",
@@ -164,7 +164,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0003E",
     "content": "imutáveis",
@@ -174,7 +174,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0003F",
     "content": "herdadas",
@@ -186,7 +186,7 @@ POST http://localhost:8080/option
 HTTP 201
 
 # exercise 4
-POST http://localhost:8080/exercise
+POST http://localhost:8888/exercise
 {
     "id": "ewa-pdc-0004",
     "set_id": "EWA_DEMO_PDC",
@@ -194,7 +194,7 @@ POST http://localhost:8080/exercise
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0004A",
     "content": "algébrico",
@@ -204,7 +204,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0004B",
     "content": "imutável",
@@ -214,7 +214,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0004C",
     "content": "functor",
@@ -224,7 +224,7 @@ POST http://localhost:8080/option
 }
 
 HTTP 201
-POST http://localhost:8080/option
+POST http://localhost:8888/option
 {
     "id": "option-ewa-0004E",
     "content": "colecionado",
