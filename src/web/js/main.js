@@ -112,7 +112,7 @@ function populateExerciseContainer(exercises) {
 
     // Create and append a paragraph for the exercise instruction
     const pElement = document.createElement('p');
-    pElement.textContent = `Exercise Instruction: ${exercise.instruction}`;
+    pElement.textContent = `${exercise.instruction}`;
     div.appendChild(pElement);
 
     // Iterate through each option in the exercise and create checkboxes
