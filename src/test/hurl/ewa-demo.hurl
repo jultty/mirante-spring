@@ -190,7 +190,7 @@ POST http://localhost:8080/exercise
 {
     "id": "ewa-pdc-0004",
     "set_id": "EWA_DEMO_PDC",
-    "instruction": "Complete: \"Um tipo de dado ________, na programação funcional, é um tipo de dado composto por outros dados.\" :"
+    "instruction": "Complete: \"Um tipo de dado ________, na programação funcional, é um tipo de dado composto por outros tipos.\" :"
 }
 
 HTTP 201
