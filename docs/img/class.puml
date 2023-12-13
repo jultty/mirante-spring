@@ -26,7 +26,7 @@ class Event {
   - content: String
 }
 
-interface EventRepository {
+class EventRepository {
   + save(event: Event): Event
   + findById(id: String): Optional<Event>
   + findAll(): List<Event>
@@ -61,7 +61,7 @@ class ExerciseSet {
   - exercises: Set<Exercise>
 }
 
-interface ExerciseRepository {
+class ExerciseRepository {
   + save(exercise: Exercise): Exercise
   + findById(id: String): Optional<Exercise>
   + findAll(): List<Exercise>
@@ -76,7 +76,7 @@ class ExerciseSetController {
   + deleteExerciseSet(id: String): void
 }
 
-interface ExerciseSetRepository {
+class ExerciseSetRepository {
   + save(exerciseSet: ExerciseSet): ExerciseSet
   + findById(id: String): Optional<ExerciseSet>
   + findAll(): List<ExerciseSet>
@@ -100,7 +100,7 @@ class Option {
   - exercise: Exercise
 }
 
-interface OptionRepository {
+class OptionRepository {
   + save(option: Option): Option
   + findById(id: String): Optional<Option>
   + findAll(): List<Option>
@@ -113,16 +113,16 @@ interface OptionRepository {
 ExerciseSet --o Exercise
 Exercise --o Option
 
-OptionController --o Option
-OptionRepository --o Option
-OptionController --> OptionRepository 
+OptionController o-- Option
+OptionRepository o-- Option
+OptionController o-- OptionRepository 
 
-ExerciseController --o Exercise
-ExerciseRepository --o Exercise
+ExerciseController o-- Exercise
+ExerciseRepository o-- Exercise
 ExerciseController --> ExerciseRepository
 
-ExerciseSetRepository --o ExerciseSet
-ExerciseSetController --o ExerciseSet
+ExerciseSetRepository o-- ExerciseSet
+ExerciseSetController o-- ExerciseSet
 ExerciseSetController --> ExerciseSetRepository
 
 
