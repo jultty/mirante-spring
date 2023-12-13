@@ -11,5 +11,5 @@ A document explaining v0.1.0 can be found in the [docs](docs) directory. This cu
 To set a specific port when running:
 
 ```sh
-java -Dserver.port=8888 -jar myApplication.jar
+java -Dserver.port=8888 -jar target/api-0.1.0-SNAPSHOT.jar
 ```
