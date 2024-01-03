@@ -1,8 +1,8 @@
 #set document(
-  title: "Mirante: Relatório de Desenvolvimento", 
+  title: "Mirante", 
   author: "Juno Takano", 
   date: auto,
-  keywords: ("engenharia de software", "EWAI3", "IFSP", "IFSP-JCR"),
+  keywords: ("ensino-aprendizagem", "programação orientada a dados", "programação dirigida a testes", "análise de dados"),
 )
 #set page(paper: "a5", margin: (x: 2cm, y: 2cm))
 #set text(font: "", size: 10pt, lang: "pt")
@@ -13,8 +13,8 @@
 #set footnote.entry(gap: 1em, clearance: 1em)
 #show link: underline
 
-#v(100pt)
-#align(center)[
+#v(40pt)
+#align(left)[
   #text(
     weight: "bold",
     size: 1.7em,
@@ -23,18 +23,14 @@
     [ Mirante: Sistema de \ ensino-aprendizagem orientada a dados ]
   )
 
-  #text(size: 1.3em, weight: "bold", font: "CaskaydiaCove NF", [Relatório Final de Desenvolvimento])
+  #text(size: 1.3em, weight: "bold", font: "CaskaydiaCove NF", [Relatório de Desenvolvimento])
 
-  #text(size: 1.0em, weight: "bold", font: "Hack NF", [Engenharia de Software Aplicada])
+  #text(size: 1.0em, weight: "bold", font: "Hack NF", [v0.1.1], fill: rgb("#44aa44"))
 
-  #text(size: 1.2em, font: "Cousine Nerd Font", [Juno Takano])
+  #text(size: 1.2em, font: "Cousine Nerd Font", [])
 
-  #v(250pt)
-  #text(size: 1.1em, font: "Liberation Serif", style: "italic", [Jacareí, 11 de dezembro de 2023])
+  #v(40pt)
 ]
-
-#pagebreak()
-#outline()
 
 #pagebreak()
 = Introdução
@@ -167,6 +163,7 @@ O subpacote de eventos não estabelece relações diretas com as outras entidade
 
 No caso do evento que aparece neste protótipo, tratam-se dos identificadores das alternativas escolhidas. Não se trata de uma chave estrangeira, mas do identificador na forma de texto puro, separado por vírgulas. Embora isto signifique que alterações não-documentadas podem causar perda de informação, também significa que o registro preciso do que aconteceu naquele ponto no tempo não será perdido. Aliado a outros dados complementares, este registro de eventos pode portanto ser uma ferramenta essencial no processo de análise.
 
+#pagebreak()
 == Subpacote `account`
 #figure(
   image("img/class-account.png", width: 100%),
