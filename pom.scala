@@ -5,7 +5,7 @@ Model(
   "mirante" % "api" % "0.1.0-SNAPSHOT",
   name = "api",
   description = "Backend for Mirante, a data-oriented educational system",
-  properties = Map("java.version" -> "17"),
+  properties = Map("java.version" -> "21"),
   parent = Parent(
     gav = "org.springframework.boot" % "spring-boot-starter-parent" % "3.2.0",
     relativePath = ""
