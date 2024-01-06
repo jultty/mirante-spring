@@ -13,3 +13,7 @@ To set a specific port when running:
 ```sh
 java -Dserver.port=8888 -jar target/api-0.1.0-SNAPSHOT.jar
 ```
+
+## Development
+
+If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system, you can use the flake file to setup a development environment with JDK 21 and Maven using `nix develop`.
