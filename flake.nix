@@ -35,7 +35,7 @@
     devShells.${system}.default = pkgs.mkShell {
       packages = [
         pkgs.jdk21
-        pkgs.maven
+        pkgs.gradle
       ];
       DEBUG = 1;
     };
