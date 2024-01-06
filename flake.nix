@@ -37,7 +37,6 @@
         pkgs.jdk21
         pkgs.gradle
       ];
-      DEBUG = 1;
     };
   };
 }
