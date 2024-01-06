@@ -2,7 +2,7 @@ import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
 Model(
-  "mirante" % "api" % "0.1.0-SNAPSHOT",
+  "mirante" % "api" % "0.1.1-SNAPSHOT",
   name = "api",
   description = "Backend for Mirante, a data-oriented educational system",
   properties = Map("java.version" -> "21"),
@@ -18,8 +18,12 @@ Model(
   ),
   build = Build(
     plugins = Seq(
+      Plugin("org.springframework.boot" % "spring-boot-maven-plugin"),
       Plugin(
-        "org.springframework.boot" % "spring-boot-maven-plugin"
+        "org.gaul" % "modernizer-maven-plugin" % "2.7.0",
+        configuration = Config(
+          javaVersion = 21
+        )
       )
     )
   ),
