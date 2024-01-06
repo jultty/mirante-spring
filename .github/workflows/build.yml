@@ -19,6 +19,6 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
     - name: Package
-      run: gradle package
+      run: gradle jar
     - name: Test
       run: gradle test
