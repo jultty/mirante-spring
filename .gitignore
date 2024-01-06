@@ -26,6 +26,9 @@ bin/
 .springBeans
 .sts4-cache
 
+# Kotlin
+kls_database.db
+
 ### IDEs
 
 # VS Code

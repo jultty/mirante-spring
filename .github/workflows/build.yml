@@ -20,8 +20,8 @@ jobs:
       with:
         java-version: ${{ matrix.version }}
         distribution: 'temurin'
-        cache: 'maven'
+        cache: 'gradle'
     - name: Package
-      run: mvn package
+      run: gradle package
     - name: Test
-      run: mvn test
+      run: gradle test
