@@ -6,12 +6,9 @@ jobs:
   all:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        version: [8, 11, 17, 21]
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        version: [ 17 ]
       fail-fast: false
-    defaults:
-      run:
-        working-directory: ./app
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
@@ -20,8 +17,8 @@ jobs:
       with:
         java-version: ${{ matrix.version }}
         distribution: 'temurin'
-        cache: 'maven'
+        cache: 'gradle'
     - name: Package
-      run: mvn package
+      run: gradle jar
     - name: Test
-      run: mvn test
+      run: gradle test

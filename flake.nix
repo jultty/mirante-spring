@@ -1,9 +1,8 @@
 {
   inputs = { 
-    mvn2nix.url = "github:fzakaria/mvn2nix";
     utils.url = "github:numtide/flake-utils";
   };
-  outputs = { nixpkgs, mvn2nix, utils, ... }: 
+  outputs = { nixpkgs, utils, ... }: 
     let 
     name = "mirante-spring";
     version = "0.1.1-SNAPSHOT";
@@ -21,12 +20,12 @@
       stdenv.mkDerivation {
         name = "${name}";
         src = self;
-        nativeBuildInputs = [ jdk21_headless maven makeWrapper ];
-        buildPhase = "${pkgs.maven} package";
+        nativeBuildInputs = [ jdk17_headless gradle makeWrapper ];
+        buildPhase = "${pkgs.gradle} jar";
         installPhase= ''
           mkdir -p $out/bin; 
-          cp ./target/${name}-${version}.jar $out/;
-          makeWrapper ${pkgs.jdk21_headless}/bin/java $out/bin/${name} \
+          cp ./build/libs/${name}-${version}.jar $out/;
+          makeWrapper ${pkgs.jdk17_headless}/bin/java $out/bin/${name} \
             --add-flags "-jar $out/${name}-${version}.jar"
         '';
       };
@@ -34,10 +33,9 @@
 
     devShells.${system}.default = pkgs.mkShell {
       packages = [
-        pkgs.jdk21
-        pkgs.maven
+        pkgs.jdk17
+        pkgs.gradle
       ];
-      DEBUG = 1;
     };
   };
 }
