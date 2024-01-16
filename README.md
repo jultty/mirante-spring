@@ -16,14 +16,13 @@ java -Dserver.port=8888 -jar target/api-0.1.0-SNAPSHOT.jar
 
 ## Development
 
-If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system, you can use the flake file to setup a development environment with JDK 21 and Maven using `nix develop`.
+If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system, you can use the flake file to setup a development environment with JDK 21 and Gradle using `nix develop`.
 
 ### Code analysis tools for review
 
 - [dependency-check](http://jeremylong.github.io/DependencyCheck)
 - [renovate](https://github.com/renovatebot/renovate)
-- [SpotBugs](https://spotbugs.readthedocs.io/en/latest/maven.html)
-- [SonarLint](https://www.sonarsource.com/products/sonarlint/)
+- [SpotBugs](https://spotbugs.readthedocs.io/)
 - [Error Prone](https://errorprone.info/)
 - [NullAway](https://github.com/uber/NullAway)
 - [Infer](https://fbinfer.com/docs/getting-started/)
