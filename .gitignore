@@ -26,6 +26,9 @@ bin/
 .springBeans
 .sts4-cache
 
+# jdtls
+/workspace
+
 # Kotlin
 kls_database.db
 

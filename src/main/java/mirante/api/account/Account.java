@@ -2,32 +2,43 @@ package mirante.api.account;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 @Entity
 public class Account {
   
+  Argon2PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+
   @Id
-  private String username;
+  private String registration;
   private String name;
   private String email;
   private String password;
 
   public Account() {}
 
-  public Account(String username, String name, String email, String password) {
-    this.username = username;
+  public Account(String registration, String name, String email, String password) {
+    this.registration = registration;
     this.name = name;
     this.email = email;
-    this.password = password;
+    this.password = encoder.encode(password);
   }
 
-  public String getUsername() { return username; }
-  public void setUsername(String username) { this.username = username; }
+  public void changePassword(String old_password, String new_password) {
+    if (encoder.matches(old_password, this.password)) {
+      this.password = encoder.encode(new_password);
+    }
+  }
+
+  public void resetPassword(String old_password, String new_password) {
+     throw new UnsupportedOperationException();
+  }
+
+  public String getRegistration() { return registration; }
+  public void setRegistration(String registration) { this.registration = registration; }
   public String getName() { return name; }
   public void setName(String name) { this.name = name; }
   public String getEmail() { return email; }
   public void setEmail(String email) { this.email = email; }
-  public String getPassword() { return password; }
-  public void setPassword(String password) { this.password = password; }
 }
 
