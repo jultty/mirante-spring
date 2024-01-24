@@ -1,6 +1,6 @@
 # mirante-spring
 
-Mirante is a data-oriented educational system that aims to minimize the loss of relevant data that could bring us more insight into how we learn.
+Mirante is a data-oriented educational system that aims to minimize the loss of relevant data that could bring more insight into how we learn.
 
 This repository contains an implementation using Java and the Spring Boot Framework.
 
@@ -55,6 +55,15 @@ To see all available options:
 ```sh
 gradle tasks
 ```
+
+Once the server is running, for development environments an [H2 database console](https://www.h2database.com/html/tutorial.html) is available on `localhost:<port>/h2-console`.
+
+The following options allow access to the H2 console:
+
+- **Driver class:** `org.h2.Driver`
+- **JDBC URL:** `jdbc:h2:mem:mirante`
+- **User Name:** `dev`
+- **Password:** Empty 
 
 If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system and flake support enabled, you can use the flake file to setup a development environment with JDK 21 and Gradle using `nix develop`.
 

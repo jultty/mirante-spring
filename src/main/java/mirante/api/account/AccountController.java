@@ -22,7 +22,15 @@ class AccountController {
 
   @PostMapping("/account")
   @ResponseStatus(HttpStatus.CREATED)
-  Account newAccount(@RequestBody Account newAccount) {
+  Account newAccount(@RequestBody AccountRequest request) {
+
+    Account newAccount = new Account(
+      request.registration,
+      request.name,
+      request.email,
+      request.password
+    );
+
     return repository.save(newAccount);
   }
 

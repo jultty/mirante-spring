@@ -19,8 +19,9 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
-  implementation("org.springframework.security:spring-security-crypto:6.2.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+  implementation("org.springframework.security:spring-security-crypto:6.2.1")
+  implementation("org.bouncycastle:bcprov-jdk15on:1.64")
 	runtimeOnly("com.h2database:h2")
 }
 

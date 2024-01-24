@@ -2,6 +2,9 @@ package mirante.api.account;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 @Entity
 public class Account {
@@ -12,18 +15,30 @@ public class Account {
   private String email;
   private String password;
 
-  public Account() {}
+  @Transient
+  private Argon2PasswordEncoder encoder = 
+    Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
 
   public Account(String registration, String name, String email, String password) {
     this.registration = registration;
     this.name = name;
     this.email = email;
-    this.password = SecUtils.encoder.encode(password);
+    this.password = encoder.encode(password);
+  }
+
+  Account() {}
+
+  public Boolean checkPassword(String password) {
+    if (encoder.matches(password, this.password)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public void changePassword(String old_password, String new_password) {
-    if (SecUtils.encoder.matches(old_password, this.password)) {
-      this.password = SecUtils.encoder.encode(new_password);
+    if (encoder.matches(old_password, this.password)) {
+      this.password = encoder.encode(new_password);
     }
   }
 
