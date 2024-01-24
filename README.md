@@ -8,21 +8,53 @@ A document explaining v0.1.0 can be found in the [docs](docs) directory. This cu
 
 ## Running
 
-To set a specific port when running:
+After cloning or downloading this repository, you can use the included gradlew wrapper file to build it:
 
 ```sh
-java -Dserver.port=8888 -jar target/api-0.1.0-SNAPSHOT.jar
+./gradlew build
+```
+
+If you have Gradle locally installed, `gradle build` will work as well.
+
+This will build Java `.jar` files in the `build/libs` directory.
+
+Once built, you can start the server using:
+
+```sh
+java -jar target/mirante-spring-<version>.jar
+```
+
+Replace `<version>` with the current version.
+
+HTML forms meant as a minimal working front-end are available under `src/web/`. Given default port `8080` is usually in use, the forms send requests to port 8888 instead. 
+
+To use them, set port 8888 when running:
+
+```sh
+java -Dserver.port=8888 -jar target/mirante-spring-<version>.jar
 ```
 
 ## Development
 
-If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system, you can use the flake file to setup a development environment with JDK 21 and Gradle using `nix develop`.
+Gradle is used to resolve dependencies and build this project. You can use the included wrapper or [install Gradle locally](https://gradle.org/install/).
 
-### Code analysis tools for review
+To build and run the server:
 
-- [dependency-check](http://jeremylong.github.io/DependencyCheck)
-- [renovate](https://github.com/renovatebot/renovate)
-- [SpotBugs](https://spotbugs.readthedocs.io/)
-- [Error Prone](https://errorprone.info/)
-- [NullAway](https://github.com/uber/NullAway)
-- [Infer](https://fbinfer.com/docs/getting-started/)
+```sh
+gradle bootRun
+```
+
+To build only:
+
+```sh
+gradle build
+```
+
+To see all available options:
+
+```sh
+gradle tasks
+```
+
+If you have [Nix](https://nixos.org/manual/nix/stable/introduction) available on your system and flake support enabled, you can use the flake file to setup a development environment with JDK 21 and Gradle using `nix develop`.
+
