@@ -3,8 +3,9 @@ package mirante.api.account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
-
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+
+import mirante.api.course.Course;
 
 @Entity
 public class Account {
@@ -14,16 +15,23 @@ public class Account {
   private String name;
   private String email;
   private String password;
+  private Course course;
 
   @Transient
   private Argon2PasswordEncoder encoder = 
     Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
 
-  public Account(String registration, String name, String email, String password) {
+  public Account(
+      String registration,
+      String name,
+      String email,
+      String password,
+      Course course) {
     this.registration = registration;
     this.name = name;
     this.email = email;
     this.password = encoder.encode(password);
+    this.course = course;
   }
 
   Account() {}
@@ -52,5 +60,7 @@ public class Account {
   public void setName(String name) { this.name = name; }
   public String getEmail() { return email; }
   public void setEmail(String email) { this.email = email; }
+  public Course getCourse() { return course; }
+  public void setCourse(Course course) { this.course = course; }
 }
 

@@ -28,7 +28,8 @@ class AccountController {
       request.registration,
       request.name,
       request.email,
-      request.password
+      request.password,
+      request.course
     );
 
     return repository.save(newAccount);
