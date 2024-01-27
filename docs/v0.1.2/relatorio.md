@@ -26,6 +26,14 @@ A segunda informação levou à compreensão de que o ORM não estava chamando o
 
 Como solução, o controlador do _endpoint_ `account` passou a serializar os dados da requisição em um objeto de uma nova classe intermediária, criada com acesso restrito somente ao pacote `account`, e então instanciar um objeto da classe `Account` utilizando o construtor correto, que codifica a senha recebida, e então a passa para o repositório JPA para ser persistida no banco.
 
+Uma estrutura de dados para agrupar turmas (`Course`) foi criada. As classes `Account` e `ExerciseSet` passaram a ter um campo 'Course` onde a turma à qual se associam pode ser especificada.
+
+A classe `Account` recebeu ainda o campo `token`, que armazena o token de acesso atual que permite que a conta autentique suas requisições e que o sistema valide que aquela conta tem acesso ao recurso solicitado.
+
+A classe AccountService foi criada para fornecer métodos de obtenção de tokens de acesso e de busca por uma conta através de um token fornecido. Nesta classe é feita a verificação onde o token apenas é retornado se a senha fornecida passa no método de verificação da senha codificada.
+
+Um novo endpoint `/token` foi adicionado para a obtenção de um token através de uma solicitação `GET`.
+
 [#1]: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 [#2]: https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-argon2
 [#3]: https://docs.spring.io/spring-security/site/docs/6.2.1/api/org/springframework/security/crypto/argon2/Argon2PasswordEncoder.html#encode(java.lang.CharSequence)

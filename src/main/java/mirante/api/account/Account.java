@@ -2,8 +2,8 @@ package mirante.api.account;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
-import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 import mirante.api.course.Course;
 
@@ -15,11 +15,10 @@ public class Account {
   private String name;
   private String email;
   private String password;
-  private Course course;
+  private String token;
 
-  @Transient
-  private Argon2PasswordEncoder encoder = 
-    Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
+  @ManyToOne @JoinColumn(name = "account_course")
+  private Course course;
 
   public Account(
       String registration,
@@ -30,14 +29,14 @@ public class Account {
     this.registration = registration;
     this.name = name;
     this.email = email;
-    this.password = encoder.encode(password);
+    this.password = SecUtils.encoder.encode(password);
     this.course = course;
   }
 
   Account() {}
 
   public Boolean checkPassword(String password) {
-    if (encoder.matches(password, this.password)) {
+    if (SecUtils.encoder.matches(password, this.password)) {
       return true;
     } else {
       return false;
@@ -45,8 +44,8 @@ public class Account {
   }
 
   public void changePassword(String old_password, String new_password) {
-    if (encoder.matches(old_password, this.password)) {
-      this.password = encoder.encode(new_password);
+    if (SecUtils.encoder.matches(old_password, this.password)) {
+      this.password = SecUtils.encoder.encode(new_password);
     }
   }
 
@@ -62,5 +61,6 @@ public class Account {
   public void setEmail(String email) { this.email = email; }
   public Course getCourse() { return course; }
   public void setCourse(Course course) { this.course = course; }
+  String getToken() { return token; }
+  void setToken(String token) { this.token = token; }
 }
-

@@ -2,7 +2,6 @@ package mirante.api.course;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
 
 @Entity
 public class Course {

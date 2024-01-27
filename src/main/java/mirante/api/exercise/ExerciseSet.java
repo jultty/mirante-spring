@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import mirante.api.course.Course;
@@ -17,8 +18,8 @@ public class ExerciseSet {
   @JsonProperty("name") private String name;
   Access access;
 
-  @ManyToMany @JoinColumn(name = "set_course")
-  private Course course;
+  @ManyToMany @JoinTable(name = "set_course")
+  private Set<Course> courses;
 
   @OneToMany @JoinColumn(name = "exercise_set")
   private Set<Exercise> exercises;
@@ -30,10 +31,9 @@ public class ExerciseSet {
     this.name = "";
   }
 
-  public ExerciseSet(String id, String name, Course course) {
+  public ExerciseSet(String id, String name) {
     this.id = id;
     this.name = name;
-    this.course = course;
     this.access = Access.PRIVATE;
   }
 
@@ -41,8 +41,6 @@ public class ExerciseSet {
   public String getId() { return id; }
   public void setName(String name) { this.name = name; }
   public String getName() { return name; }
-  public void setCourse(Course course) { this.course = course; }
-  public Course getCourse() { return course; }
   public void setAccess(Access access) { this.access = access; }
   public Access getAccess() { return access; }
 }

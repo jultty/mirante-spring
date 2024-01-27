@@ -1,8 +1,10 @@
 package mirante.api.account;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -10,6 +12,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 class AccountController {
   private final AccountRepository repository;
+
+  @Autowired
+  private AccountService accountService;
 
   AccountController(AccountRepository repository) {
     this.repository = repository;
@@ -47,4 +52,16 @@ class AccountController {
   void deleteAccount(@PathVariable String id) {
     repository.deleteById(id);
   }
+
+  @GetMapping("/token")
+  String getToken(@RequestBody AccountRequest request) {
+
+      Optional<String> token =
+        accountService.login(request.registration, request.password);
+
+      if (token.isPresent()) {
+        return token.get();
+      } else
+        return "Failed to generate token";
+      }
 }

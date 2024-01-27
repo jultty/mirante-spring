@@ -1,6 +1,5 @@
 package mirante.api.account;
 
-import mirante.api.account.Account;
 import mirante.api.course.Course;
 
 import org.junit.jupiter.api.Test;
