@@ -60,7 +60,7 @@ class AccountController {
         accountService.login(request.registration, request.password);
 
       if (token.isPresent()) {
-        return token.get();
+        return "{\"token\":\"" + token.get() + "\"}";
       } else
         return "Failed to generate token";
       }

@@ -16,8 +16,7 @@ public class Exercise {
   @Id @JsonProperty("id") private String id;
   @JsonProperty("instruction") private String instruction;
 
-  @OneToMany
-  @JoinColumn(name = "exercise_option")
+  @OneToMany @JoinColumn(name = "exercise_option")
   private Set<Option> options;
 
   @JsonProperty("set_id")
