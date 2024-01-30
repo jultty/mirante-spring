@@ -22,6 +22,7 @@ class AccountController {
 
   @GetMapping("/account")
   List<Account> all() {
+
     return repository.findAll();
   }
 
@@ -60,7 +61,7 @@ class AccountController {
         accountService.login(request.registration, request.password);
 
       if (token.isPresent()) {
-        return "{\"token\":\"" + token.get() + "\"}";
+        return "{\"token\":\"" + token.orElseThrow() + "\"}";
       } else
         return "Failed to generate token";
       }
