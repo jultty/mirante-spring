@@ -1,0 +1,30 @@
+@startuml
+skinparam actorStyle Hollow
+
+left to right direction
+actor "Docente" as p
+actor "Discente" as a
+rectangle Sistema {
+    usecase "Gerenciar sua conta" as C1
+    usecase "Ver dados agregados da conta" as C2
+    usecase "Gerenciar suas turmas" as C3
+    usecase "Ver dados agregados da turma" as C4
+    usecase "Gerenciar exercícios e opções" as C5
+    usecase "Retornar resultados" as C6
+    usecase "Retornar eventos" as C7
+}
+
+a ---> C1
+a ---> C2
+a ---> C3
+a ---> C4
+a ---> C5
+a ---> C6
+a ---> C7
+
+p ---> C1
+p ---> C2
+p ---> C3
+p ---> C4
+
+@enduml

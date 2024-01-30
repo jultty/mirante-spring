@@ -1,0 +1,15 @@
+@startuml
+hide footbox
+actor User
+
+User -> System: Request fo exercise answering page
+System --> User: Exercise answering page
+User -> System: Request for an exercise set
+System --> System: Assemble exercise set
+System --> User: Exercise set data
+User -> System: Results
+System --> System: Result
+System --> System: Result event
+System --> User: Successfully stored response
+
+@enduml

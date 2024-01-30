@@ -1,0 +1,16 @@
+@startuml
+hide footbox
+actor User
+
+User -> System: Request account creation page
+System --> User: Account creation page
+User -> System: Filled account form
+System --> User: Successfully created response
+User -> System: Request account editing page
+System --> User: Account editing page
+User -> System: Updated account details form
+System --> User: Successfully updated response
+User -> System: Delete account request
+System --> User: Successfully deleted response
+
+@enduml

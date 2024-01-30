@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+actor Teacher
+
+Teacher -> System: Exercise set creation page request
+System-> Teacher : Exercise set creation page
+Teacher -> System: New exercise set form data
+System --> Teacher: Successfully created response
+
+Teacher -> System: Exercise creation page request
+System-> Teacher : Exercise creation page
+Teacher -> System: New exercise form data
+System --> Teacher: Successfully created response
+
+Teacher -> System: Option creation page request
+System-> Teacher : Option creation page
+Teacher -> System: New option form data
+System --> Teacher: Successfully created response
+
+actor Student
+Student -> System: Exercise answering page request
+System --> Student: Exercise answering page
+Student -> System: Exercise set request
+System --> Student : Exercise set data
+Student -> System: Exercise results data
+System -> System: Result
+System -> System: Result Event
+System --> Student: Successfully stored response
+
+@enduml
