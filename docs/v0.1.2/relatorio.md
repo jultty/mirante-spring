@@ -34,6 +34,18 @@ A classe AccountService foi criada para fornecer métodos de obtenção de token
 
 Um novo endpoint `/token` foi adicionado para a obtenção de um token através de uma solicitação `GET`.
 
+Para facilitar a captura do token nos testes com o Hurl, ele será retornado como uma estrutura JSON simples:
+
+```json
+{ "token": "3a321f5a-ddaf-4800-9530-49cb39a2effc" }
+```
+
+Uma classe `Result` foi criada para armazenar resultados. Esta classe tem apenas um campo do tipo `Timestamp`, que armazena a data e o horário em um formato padronizado e compatível com o banco de dados, e um campo da classe `Exercise`, que corresponde a um objeto equivalente ao exercício recebido como resposta. 
+
+Esse exercício conterá um conjunto de opções que poderá ser comparado com o conjunto armazenado no conjunto de exercícios original para obter a acuidade do resultado. A partir desse valor e da data, será possível calcular também as métricas de retenção e assiduidade.
+
+Os diagramas de casos de uso, sequência e telas foram atualizados para corresponder à nova implementação. O diagrama de casos de uso da ferramenta usada (PlantUML) torna-se confuso quando há grande quantidade de setas. Para os próximos, planejo utilizar a ferramenta Draw.io neste tipo de diagrama especificamente.
+
 [#1]: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 [#2]: https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-argon2
 [#3]: https://docs.spring.io/spring-security/site/docs/6.2.1/api/org/springframework/security/crypto/argon2/Argon2PasswordEncoder.html#encode(java.lang.CharSequence)
