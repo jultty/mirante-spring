@@ -31,7 +31,7 @@ public class ExerciseSet {
     this.name = "";
   }
 
-  public ExerciseSet(String id, String name) {
+  public ExerciseSet(String id, String name, Course course) {
     this.id = id;
     this.name = name;
     this.access = Access.PRIVATE;
