@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
-import mirante.api.exercise.Exercise;
+import mirante.api.exercise.ExerciseSet;
 
 @Entity
 public class Result {
@@ -19,14 +19,14 @@ public class Result {
   private long id;
   private Timestamp time;
 
-  @ManyToOne @JoinColumn(name = "result_exercise", referencedColumnName = "id")
-  private Exercise exercise;
+  @ManyToOne @JoinColumn(name = "result_set", referencedColumnName = "id")
+  private ExerciseSet set;
 
   public Result() {}
 
-  public Result(Timestamp time, Exercise exercise) {
+  public Result(Timestamp time, ExerciseSet set) {
     this.time = time;
-    this.exercise = exercise;
+    this.set = set;
   }
 }
 
