@@ -1,5 +1,6 @@
 package mirante.api.exercise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,20 @@ class ExerciseController {
   }
 
   @GetMapping("/exercise")
-  List<Exercise> all() {
-    return repository.findAll();
+  List<ExerciseDTO> all() {
+    List<Exercise> exercises = repository.findAll();
+    List<ExerciseDTO> exerciseDTOs = new ArrayList<ExerciseDTO>();
+
+    exercises.forEach(e -> {
+      ExerciseDTO dto = new ExerciseDTO();
+      dto.id = e.getId();
+      dto.instruction = e.getInstruction();
+      dto.set = e.getSetId();
+
+      exerciseDTOs.add(dto);
+    });
+
+    return exerciseDTOs;
   }
 
   @PostMapping("/exercise")

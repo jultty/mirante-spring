@@ -38,5 +38,9 @@ public class Exercise {
   public void addOption(Option option) {
     options.add(option);
   }
+
+  public String getId() { return id; }
+  public String getInstruction() { return instruction; }
+  public String getSetId() { return set.getId(); }
 }
 
