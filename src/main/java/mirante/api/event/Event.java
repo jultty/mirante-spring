@@ -10,18 +10,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Event {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  @JsonProperty("timestamp") private Timestamp timestamp;
+  @JsonProperty("time") private Timestamp time;
   @JsonProperty("description") private String description;
   @JsonProperty("content") private String content;
 
   public Event() {}
 
-  public Event(Timestamp timestamp, String description, String content) {
-    this.timestamp = timestamp;
+  public Event(Timestamp time, String description, String content) {
+    this.time = time;
     this.description = description;
     this.content = content;
   }

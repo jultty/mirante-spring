@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
-import mirante.api.exercise.ExerciseSet;
+import mirante.api.exercise.set.ExerciseSet;
 
 @Entity
 public class Result {

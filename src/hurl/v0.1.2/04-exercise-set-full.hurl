@@ -10,7 +10,7 @@ HTTP 201
 POST http://localhost:8888/exercise
 {
     "id": "demo-pdp-0001",
-    "set_id": "demo-set-pdp",
+    "set": "demo-set-pdp",
     "instruction": "Os pilares da POO são:"
 }
 
@@ -70,7 +70,7 @@ HTTP 201
 POST http://localhost:8888/exercise
 {
     "id": "demo-pdp-0002",
-    "set_id": "demo-set-pdp",
+    "set": "demo-set-pdp",
     "instruction": "(UFAM) No paradigma de Programação Orientação a Objetos, a separação de programas em partes, o mais isolado possível, refere-se ao conceito de ___________. :"
 }
 
@@ -130,7 +130,7 @@ HTTP 201
 POST http://localhost:8888/exercise
 {
     "id": "demo-pdp-0003",
-    "set_id": "demo-set-pdp",
+    "set": "demo-set-pdp",
     "instruction": "Na programação funcional, deve-se favorecer sempre que possível o uso de estruturas de dados:"
 }
 
@@ -190,7 +190,7 @@ HTTP 201
 POST http://localhost:8888/exercise
 {
     "id": "demo-pdp-0004",
-    "set_id": "demo-set-pdp",
+    "set": "demo-set-pdp",
     "instruction": "Complete: \"Um tipo de dado ________, na programação funcional, é um tipo de dado composto por outros tipos.\" :"
 }
 

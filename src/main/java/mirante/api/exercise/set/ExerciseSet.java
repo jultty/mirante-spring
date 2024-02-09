@@ -1,4 +1,4 @@
-package mirante.api.exercise;
+package mirante.api.exercise.set;
 
 import java.util.Set;
 import jakarta.persistence.Entity;
@@ -10,10 +10,11 @@ import jakarta.persistence.JoinTable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import mirante.api.course.Course;
+import mirante.api.exercise.Exercise;
 
 @Entity
 public class ExerciseSet {
-  
+
   @Id @JsonProperty("id") private String id;
   @JsonProperty("name") private String name;
   Access access;

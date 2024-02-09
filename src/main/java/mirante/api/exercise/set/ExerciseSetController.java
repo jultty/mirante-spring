@@ -1,4 +1,4 @@
-package mirante.api.exercise;
+package mirante.api.exercise.set;
 
 import java.util.List;
 
@@ -28,10 +28,12 @@ class ExerciseSetController {
 
   @GetMapping("/set/{id}")
   ExerciseSet one(@PathVariable String id) {
-    return repository.findById(id)
+    ExerciseSet set = repository.findById(id)
       .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND, "Exercise set with id ${id} not found")
           );
+
+    return set;
   }
 
   @DeleteMapping("/set/{id}")
