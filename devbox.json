@@ -1,0 +1,16 @@
+{
+  "packages": [
+    "jdk@17.0.10",
+    "gradle@8"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Starting: mirante devbox shell'"
+    ],
+    "scripts": {
+      "test": [ "gradle test" ],
+      "build": [ "gradle build" ],
+      "run": [ "java -Dserver.port=8888 -jar build/libs/mirante-spring-0.1.2-SNAPSHOT.jar" ]
+    }
+  }
+}

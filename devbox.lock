@@ -1,0 +1,40 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "gradle@8": {
+      "last_modified": "2024-02-05T02:15:44Z",
+      "plugin_version": "0.0.1",
+      "resolved": "github:NixOS/nixpkgs/0a254180b4cad6be45aa46dce896bdb8db5d2930#gradle",
+      "source": "devbox-search",
+      "version": "8.6",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/5rw79wwalf42finxsx807a0iwwn5rh7l-gradle-8.6"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/i4snj3h65vdlagi2bsigrpxq2jp8fwqj-gradle-8.6"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/3yzhnnfl91pdhv8wi291r0w8z0r4g1hr-gradle-8.6"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/9blqcagkjb1yk1hf18fd0lwyzs9ff309-gradle-8.6"
+        }
+      }
+    },
+    "jdk@17.0.10": {
+      "last_modified": "2024-02-05T02:15:44Z",
+      "resolved": "github:NixOS/nixpkgs/0a254180b4cad6be45aa46dce896bdb8db5d2930#jdk17",
+      "source": "devbox-search",
+      "version": "17.0.10",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/0xmyzzqp1g6gr1mls9j64y55dnlgv0r4-zulu-ca-jdk-17.0.10"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/bl8j60clb1y8kfyrrbf6br00hyjbj2sq-zulu-ca-jdk-17.0.10"
+        }
+      }
+    }
+  }
+}
