@@ -17,7 +17,7 @@ POST http://localhost:8888/exercise
 HTTP 201
 POST http://localhost:8888/option
 {
-    "id": "option-/wa-0001A",
+    "id": "option-demo-pdp-0001A",
     "content": "Polimorfismo",
     "correct": true,
     "place": 1,
@@ -107,7 +107,7 @@ POST http://localhost:8888/option
 HTTP 201
 POST http://localhost:8888/option
 {
-    "id": "option-demo-pdp-0002E",
+    "id": "option-demo-pdp-0002D",
     "content": "herança",
     "place": 4,
     "correct": false,
@@ -117,7 +117,7 @@ POST http://localhost:8888/option
 HTTP 201
 POST http://localhost:8888/option
 {
-    "id": "option-demo-pdp-0002F",
+    "id": "option-demo-pdp-0002E",
     "content": "polimorfismo",
     "place": 5,
     "correct": false,
