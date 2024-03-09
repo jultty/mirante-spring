@@ -1,5 +1,6 @@
 package mirante.api.exercise;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import mirante.api.exercise.option.Option;
 import mirante.api.exercise.set.ExerciseSet;
 
@@ -17,6 +18,7 @@ public class Exercise {
   @Id @JsonProperty("id") private String id;
   @JsonProperty("instruction") private String instruction;
 
+  @JsonManagedReference
   @OneToMany @JoinColumn(name = "exercise_option")
   private Set<Option> options;
 
@@ -36,11 +38,14 @@ public class Exercise {
   }
 
   public void addOption(Option option) {
-    options.add(option);
+    if (option.getExerciseId().equals(id)) {
+      options.add(option);
+    }
   }
 
   public String getId() { return id; }
   public String getInstruction() { return instruction; }
   public String getSetId() { return set.getId(); }
+  public Set<Option> getOptions() { return options; }
 }
 

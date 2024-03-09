@@ -48,5 +48,44 @@
 ## 0.x.0
 - Repetição espaçada
 
-## 0.x.0
-- Página de documentação para desenvolvedories
+## Backlog
+- Página de documentação para desenvolvedores
+- [ ] Novas estruturas de dados
+  - [x] Course
+  - [ ] Result
+- [ ] Revisar estrutura de dados para questões de ordenação
+  - [ ] Cada alternativa deve ter um valor numérico
+  - [ ] Cada alternativa deve ter um valor correto
+  - [ ] Ao receber o resultado, deve poder informar se está correto
+- [ ] Adicionar estruturas de dados para contas
+  - [x] Adicionar lógica para gerar tokens de acesso temporários
+  - [ ] Somente um usuário autenticado pode enviar resultados
+  - [ ] Somente um usuário autenticado pode alterar suas questões
+  - [ ] Somente um usuário autenticado pode alterar seus conjuntos de questões
+  - [ ] Somente um usuário autenticado pode alterar suas turmas
+  - [ ] Somente um usuário autenticado pode alterar seus dados
+- [ ] Adicionar etruturas de dados para níveis de acesso
+  - [x] Enum Access para conjuntos de questões
+  - [x] Novo conjunto de questões é privado por padrão
+  - [ ] Acesso público permite acesso a todos os grupos
+  - [ ] Acesso "Course" permite acesso somente ao curso associado ao conjunto
+- [ ] Adicionar estruturas de dados para receber resultados
+  - [ ] classe Result 
+    - [ ] Atributos:
+      - [ ] User
+      - [ ] Date
+      - [ ] Question
+      - [ ] Chosen options
+        - [ ] Exercícios de ordenação lidam diferentemente com este item
+          - [ ] Valores numéricos para cada alternativa
+      - [ ] Course
+      - [ ] Accuracy
+- [ ] Conta docente
+- [ ] Interface gráfica para criação de cursos
+- [ ] Invalidação de tokens
+- [ ] Conjunto de questões em inglês
+- [ ] Conjunto de questões de lógica
+
+- [ ] Verificar formatação de data em JSON
+  - Ver: <https://www.baeldung.com/jackson-serialize-dates?__s=m5n9kdgdsquuqqb9ufy2>
+- [ ] `/set/demo-set-pdp` deveria retornar todos os ids de exercícios

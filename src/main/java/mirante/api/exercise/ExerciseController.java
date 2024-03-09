@@ -17,7 +17,7 @@ class ExerciseController {
   }
 
   @GetMapping("/exercise")
-  List<ExerciseDTO> all() {
+  List<ExerciseDTO> getExercises() {
     List<Exercise> exercises = repository.findAll();
     List<ExerciseDTO> exerciseDTOs = new ArrayList<ExerciseDTO>();
 
@@ -26,12 +26,12 @@ class ExerciseController {
       dto.id = e.getId();
       dto.instruction = e.getInstruction();
       dto.set = e.getSetId();
-
       exerciseDTOs.add(dto);
     });
 
     return exerciseDTOs;
   }
+
 
   @PostMapping("/exercise")
   @ResponseStatus(HttpStatus.CREATED)
