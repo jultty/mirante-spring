@@ -31,20 +31,57 @@ exerciseSetDropdown.addEventListener('input', function () {
     exerciseContainer.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      const form = document.querySelector('form'); 
+      const form = document.querySelector('form');
       const checkboxes = Array.from(form.querySelectorAll('input[type="checkbox"]'));
 
       const selectedOptions = checkboxes
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
 
-      reportSelection(selectedOptions, setOptions);
+      printCorrectOptions(selectedOptions, setOptions);
+      sendResponseEvent(selectedOptions);
+      sendResponseResult(selectedOptions);
     });
 
   }
 });
 
-function reportSelection(selection, setOptions) {
+function sendResponseResult(selection) {
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:8888/result');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  const result = {
+    time: new Date().getTime(),
+    set: {
+      id: exercise_set_id,
+      name: exercise_set_name,
+      access: exercise_set_access,
+    }
+  };
+
+  xhr.send(JSON.stringify(result));
+  console.dir(result);
+}
+
+function sendResponseEvent(selection) {
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:8888/event');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  const event = {
+    description: 'exercise set response event',
+    content: selection.toString(),
+    time: new Date().getTime(),
+  };
+
+  xhr.send(JSON.stringify(event));
+  console.dir(event);
+}
+
+function printCorrectOptions(selection, setOptions) {
 
   let correctCount = 0;
   let incorrectCount = 0;
@@ -59,19 +96,6 @@ function reportSelection(selection, setOptions) {
   });
 
   console.log(`Correctly Checked: ${correctCount} Incorrectly Checked: ${incorrectCount}`);
-
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:8888/event');
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  const data = {
-    description: 'exercise set response',
-    content: selection.toString(),
-    timestamp: new Date().getTime(),
-  };
-
-  xhr.send(JSON.stringify(data));
-
 }
 
 function assembleExerciseOptions(options) {
@@ -170,3 +194,4 @@ function extractExerciseSets(data) {
 
   return Object.values(uniqueExerciseSets);
 }
+
