@@ -1,0 +1,49 @@
+plugins {
+  id 'java'
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.github.andygoossens.modernizer' version '1.9.0'
+}
+
+group = 'mirante.api'
+version = '0.1.2-SNAPSHOT'
+
+configurations {
+  umlDoclet
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
+    implementation 'org.springframework.security:spring-security-crypto:6.2.1'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.64'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    runtimeOnly 'com.h2database:h2'
+    umlDoclet "nl.talsmasoftware:umldoclet:2.1.1"
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
+
+javadoc {
+  source = sourceSets.main.allJava
+    options.docletpath = configurations.umlDoclet.files.asType(List)
+    options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
+}
+
+modernizer {
+  failOnViolations = true
+}

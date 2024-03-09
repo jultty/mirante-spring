@@ -1,0 +1,15 @@
+@startuml
+hide footbox
+
+SpringApplication -> OptionController: all()
+OptionController -> OptionRepository: findAll()
+OptionRepository --> OptionController: List<Option>
+OptionController -> SpringApplication: JSON Response
+
+SpringApplication -> EventController: newEvent(@RequestBody newEvent)
+EventController -> Event: Event(timestamp, description, content)
+Event -> EventController: Event
+EventController -> EventRepository: save(Event)
+EventRepository --> EventController: Event
+EventController --> SpringApplication: HTTP 201 CREATED
+@enduml

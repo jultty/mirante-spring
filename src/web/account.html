@@ -8,16 +8,16 @@
   </head>
   <body>
     <form action="http://localhost:8888/account" method="POST">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name"><br>
+      <label for="registration">Prontuário:</label><br>
+      <input type="text" id="registration" name="registration"><br>
 
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" name="username"><br>
+      <label for="name">Nome:</label><br>
+      <input type="text" id="name" name="name"><br>
 
       <label for="email">Email:</label><br>
       <input type="email" id="email" name="email"><br>
 
-      <label for="password">Password:</label><br>
+      <label for="password">Senha:</label><br>
       <input type="password" id="password" name="password"><br>
 
       <input type="hidden" name="data" id="data">
@@ -47,8 +47,8 @@ form.addEventListener('submit', (event) => {
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   const data = {
+    registration: form.elements.registration.value,
     name: form.elements.name.value,
-    username: form.elements.username.value,
     email: form.elements.email.value,
     password: form.elements.password.value,
   };

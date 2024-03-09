@@ -1,7 +1,12 @@
 package mirante.api.exercise.option;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import mirante.api.exercise.option.OptionDTO;
+
+import mirante.api.exercise.Exercise;
+import mirante.api.exercise.ExerciseDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,8 +22,20 @@ class OptionController {
 
   @CrossOrigin(origins = "*")
   @GetMapping("/option")
-  List<Option> all() {
-    return repository.findAll();
+  List<OptionDTO> all() {
+    List<Option> options = repository.findAll();
+    List<OptionDTO> optionDTOs = new ArrayList<OptionDTO>();
+
+    options.forEach(e -> {
+      OptionDTO dto = new OptionDTO();
+      dto.place = e.getPlace();
+      dto.content = e.getContent();
+      dto.correct = e.getCorrect();
+      dto.exercise = e.getExerciseId();
+      optionDTOs.add(dto);
+    });
+
+    return optionDTOs;
   }
 
   @PostMapping("/option")
@@ -31,8 +48,8 @@ class OptionController {
   Option one(@PathVariable String id) {
     return repository.findById(id)
       .orElseThrow(() -> new ResponseStatusException(
-            HttpStatus.NOT_FOUND, "Option with id ${id} not found")
-          );
+        HttpStatus.NOT_FOUND, "Option with id ${id} not found")
+      );
   }
 
   @DeleteMapping("/option/{id}")

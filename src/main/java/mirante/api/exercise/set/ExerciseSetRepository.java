@@ -1,4 +1,4 @@
-package mirante.api.exercise;
+package mirante.api.exercise.set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
