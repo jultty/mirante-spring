@@ -1,8 +1,11 @@
 package mirante.api.exercise;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import mirante.api.exercise.option.OptionDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,6 +29,16 @@ class ExerciseController {
       dto.id = e.getId();
       dto.instruction = e.getInstruction();
       dto.set = e.getSetId();
+      dto.options = new HashSet<OptionDTO>();
+      e.getOptions().forEach(o -> {
+        OptionDTO optionDTO = new OptionDTO();
+        optionDTO.id = o.getId();
+        optionDTO.content = o.getContent();
+        optionDTO.place = o.getPlace();
+        optionDTO.correct = o.getCorrect();
+        optionDTO.exercise = o.getExerciseId();
+        dto.options.add(optionDTO);
+      });
       exerciseDTOs.add(dto);
     });
 
