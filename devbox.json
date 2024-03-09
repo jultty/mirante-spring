@@ -10,7 +10,7 @@
     "scripts": {
       "test": [ "gradle test" ],
       "build": [ "gradle build" ],
-      "run": [ "java -Dserver.port=8888 -jar build/libs/mirante-spring-0.1.2-SNAPSHOT.jar" ]
+      "run": [ "java -Dserver.port=8888 -jar build/libs/mirante-0.1.2-SNAPSHOT.jar" ]
     }
   }
 }

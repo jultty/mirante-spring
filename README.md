@@ -1,4 +1,4 @@
-# mirante-spring
+# mirante
 
 Mirante is a data-oriented educational system that aims to minimize the loss of relevant data that could bring more insight into how we learn.
 
@@ -21,7 +21,7 @@ This will build Java `.jar` files in the `build/libs` directory.
 Once built, you can start the server using:
 
 ```sh
-java -jar target/mirante-spring-<version>.jar
+java -jar target/mirante-<version>.jar
 ```
 
 Replace `<version>` with the current version.
@@ -31,7 +31,7 @@ HTML forms meant as a minimal working front-end are available under `src/web/`. 
 To use them, set port 8888 when running:
 
 ```sh
-java -Dserver.port=8888 -jar target/mirante-spring-<version>.jar
+java -Dserver.port=8888 -jar target/mirante-<version>.jar
 ```
 
 ## Development
