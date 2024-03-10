@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @CrossOrigin
 @RestController
-class ExerciseController {
+public class ExerciseController {
   private final ExerciseRepository repository;
 
   ExerciseController(ExerciseRepository repository) {
