@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'mirante.api'
-version = '0.1.2-SNAPSHOT'
+version = '0.2.0-SNAPSHOT'
 
 configurations {
   umlDoclet

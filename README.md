@@ -20,11 +20,11 @@ Once built, you can start the server using:
 java -jar build/libs/mirante-<version>.jar
 ```
 
-Replace `<version>` with the current version, for example: `java -jar build/libs/mirante-0.1.2-SNAPSHOT.jar`.
+Replace `<version>` with the current version, for example: `java -jar build/libs/mirante-0.2.0-SNAPSHOT.jar`.
 
 If you are unsure about the current version number, look into the `build/libs` directory for what files were generated, or check the `build.gradle` file.
 
-HTML forms meant as a minimal working front-end demo are available under `src/web/`. Given default port `8080` is usually in use, the forms send requests to port `8888` instead. 
+HTML forms meant as a minimal working front-end demo are available under `src/web/`. Given default port `8080` is usually in use, the forms send requests to port `8888` instead.
 
 To use them, set port 8888 when running:
 
@@ -71,6 +71,6 @@ The following options allow access to the H2 console:
 - **Driver class:** `org.h2.Driver`
 - **JDBC URL:** `jdbc:h2:mem:mirante`
 - **User Name:** `dev`
-- **Password:** Empty 
+- **Password:** Empty
 
 If you have [Devbox](https://www.jetpack.io/devbox/) available on your system, you can run `devbox shell` to get a development environment with JDK 17 and Gradle 8 already set up. You can also use `devbox run <script>` to run `build`, `test` and `run` scripts. These scripts will all run inside the Devbox shell and come with port `8888` preconfigured.
