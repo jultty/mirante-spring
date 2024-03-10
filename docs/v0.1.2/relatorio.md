@@ -7,6 +7,9 @@
 - [ ] Adicionar etruturas de dados para nĩíveis de acesso
 - [ ] Adicionar estruturas de dados para receber resultados
 
+### Subtarefas
+- [x] Resolução de uma regressão de recursão infinita ao tentar implementar a lógica de autenticação
+
 ## Desenvolvimento
 
 Foram levantadas as opções atuais para o armazenamento seguro de senhas. Conforme [recomedações da OWASP][#1] e da própria [documentação do framework Spring][#2], a opção selecionada foi o algoritmo Argon2, que fornece forte segurança criptográfica resistente a ataques de força bruta, com [suporte nativo][#3] no framework através do Spring Security.
@@ -40,11 +43,46 @@ Para facilitar a captura do token nos testes com o Hurl, ele será retornado com
 { "token": "3a321f5a-ddaf-4800-9530-49cb39a2effc" }
 ```
 
-Uma classe `Result` foi criada para armazenar resultados. Esta classe tem apenas um campo do tipo `Timestamp`, que armazena a data e o horário em um formato padronizado e compatível com o banco de dados, e um campo da classe `Exercise`, que corresponde a um objeto equivalente ao exercício recebido como resposta. 
+Uma classe `Result` foi criada para armazenar resultados. Esta classe tem apenas um campo do tipo `Timestamp`, que armazena a data e o horário em um formato padronizado e compatível com o banco de dados, e um campo da classe `Exercise`, que corresponde a um objeto equivalente ao exercício recebido como resposta.
 
 Esse exercício conterá um conjunto de opções que poderá ser comparado com o conjunto armazenado no conjunto de exercícios original para obter a acuidade do resultado. A partir desse valor e da data, será possível calcular também as métricas de retenção e assiduidade.
 
 Os diagramas de casos de uso, sequência e telas foram atualizados para corresponder à nova implementação. O diagrama de casos de uso da ferramenta usada (PlantUML) torna-se confuso quando há grande quantidade de setas. Para os próximos, planejo utilizar a ferramenta Draw.io neste tipo de diagrama especificamente.
+
+### Regressão: Regressão infinita na serialização para JSON
+A implementação da versão v0.1.1 fornecia todos os dados apenas no endpoint `/option`, que retornava todas as opções existentes.
+
+Para a versão `0.2.0` previa-se o oposto: `/option` não deveria retornar nada, e `/option/{id}` deveria retornar apenas as informações daquela opção, com seu exercício na forma simples do _id_  e não toda a estrutura do exercício.
+
+Embora esta questão tenha sido resolvida com o uso do padrão de `DTOs`, foi introduzida uma regressão de recursão infinita onde, ao tentar criar opções, elas tentavam referenciar o exercício a que pertenciam, que por sua vez referenciava todas as suas opções, e assim por diante.
+
+A primeira solução encontrada relaciona-se ao uso das anotações e `@JsonManagedReference` e `@JsonBackReference`, fornecidas no pacote `com.fasterxml.jackson.annotation.JsonBackReference`, que instruem o serializador de JSON saber em qual ponta da relação ele deve colocar a listagem completa, e em qual ponta apenas o _id_.
+
+Como próximo passo, prossegui à listagem das opções de um exercício ao solicitá-lo pelo _id_, por exemplo, `/exercise/ex002`.
+
+O endpoint `/exercise` passou a construir manualmente os DTOs aninhados, através da seguinte lógica:
+
+```java
+    exercises.forEach(e -> {
+      ExerciseDTO dto = new ExerciseDTO();
+      dto.id = e.getId();
+      dto.instruction = e.getInstruction();
+      dto.set = e.getSetId();
+      dto.options = new HashSet<OptionDTO>();
+      e.getOptions().forEach(o -> {
+        OptionDTO optionDTO = new OptionDTO();
+        optionDTO.id = o.getId();
+        optionDTO.content = o.getContent();
+        optionDTO.place = o.getPlace();
+        optionDTO.correct = o.getCorrect();
+        optionDTO.exercise = o.getExerciseId();
+        dto.options.add(optionDTO);
+      });
+      exerciseDTOs.add(dto);
+    });
+```
+
+Este código pode ainda ser melhorado com o uso da biblioteca `modelMapper`, que reduziria muito o código. De toda forma, ele agora atende à necessidade atual.
 
 [#1]: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 [#2]: https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html#authentication-password-storage-argon2
