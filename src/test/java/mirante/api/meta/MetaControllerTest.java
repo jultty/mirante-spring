@@ -1,30 +1,31 @@
 package mirante.api.meta;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Objects;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class MetaControllerTest {
 
-  @Test
-  void versionEndpointReturnsOk(@Autowired TestRestTemplate template) {
-    ResponseEntity<String> response = template.getForEntity("/version", String.class);
-    assertEquals(HttpStatus.OK, response.getStatusCode());
+  @Value("${server.port:8888}")
+  private String port;
+
+  WebTestClient client;
+
+  @BeforeEach
+  void buildClient() {
+    client = WebTestClient
+        .bindToServer()
+        .baseUrl("http://localhost:" + port)
+        .build();
   }
 
   @Test
-  void versionEndpointReturns401IfUnauthenticated(@Autowired TestRestTemplate template) {
-    ResponseEntity<String> response = template.getForEntity("/version", String.class);
-    assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+  void versionEndpointReturns401IfUnauthenticated() {
+    client.get().uri("/version").exchange()
+        .expectStatus().isUnauthorized();
   }
 
 //  @Test

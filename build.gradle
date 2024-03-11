@@ -24,6 +24,7 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   implementation 'org.springframework.boot:spring-boot-starter-data-rest'
   implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux:3.2.3'
   implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
   implementation 'org.springframework.security:spring-security-crypto:6.2.1'
   implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
