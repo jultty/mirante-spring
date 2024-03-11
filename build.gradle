@@ -22,16 +22,17 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
-    implementation 'org.springframework.security:spring-security-crypto:6.2.1'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-security'
-    testImplementation 'org.springframework.security:spring-security-test'
-    runtimeOnly 'com.h2database:h2'
-    umlDoclet "nl.talsmasoftware:umldoclet:2.1.1"
+  implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
+  implementation 'org.springframework.security:spring-security-crypto:6.2.1'
+  implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.springframework.boot:spring-boot-starter-web'
+  testImplementation 'org.springframework.boot:spring-boot-starter-security'
+  testImplementation 'org.springframework.security:spring-security-test'
+  runtimeOnly 'com.h2database:h2'
+  umlDoclet "nl.talsmasoftware:umldoclet:2.1.1"
 }
 
 tasks.named('test') {
@@ -40,7 +41,7 @@ tasks.named('test') {
 
 javadoc {
   source = sourceSets.main.allJava
-    options.docletpath = configurations.umlDoclet.files.asType(List)
+    options.docletpath = configurations.umlDoclet.files as List
     options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
 }
 
