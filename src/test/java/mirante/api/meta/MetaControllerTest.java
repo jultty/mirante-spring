@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import static org.springframework.web.reactive.function.client.ExchangeFilterFunctions.basicAuthentication;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class MetaControllerTest {
@@ -13,12 +14,26 @@ public class MetaControllerTest {
   private String port;
 
   WebTestClient client;
+  WebTestClient authenticatedClient;
+  WebTestClient unauthenticatedClient;
 
   @BeforeEach
-  void buildClient() {
+  void buildClients() {
     client = WebTestClient
         .bindToServer()
         .baseUrl("http://localhost:" + port)
+        .build();
+
+    authenticatedClient = WebTestClient
+        .bindToServer()
+        .baseUrl("http://localhost:" + port)
+        .filter(basicAuthentication("demo", "demo"))
+        .build();
+
+    unauthenticatedClient = WebTestClient
+        .bindToServer()
+        .baseUrl("http://localhost:" + port)
+        .filter(basicAuthentication("demo", "secret"))
         .build();
   }
 
@@ -28,11 +43,16 @@ public class MetaControllerTest {
         .expectStatus().isUnauthorized();
   }
 
-//  @Test
-//  void versionEndpointReturnsCurrentVersion(@Autowired TestRestTemplate template) {
-//    ResponseEntity<String> response = template.withBasicAuth("spring","secret")
-//      .getForEntity("/version", String.class);
-//    assertThat(Objects.requireNonNull(response.getBody())).contains("v0.2.0");
-//    assertEquals(response.getStatusCode(), (HttpStatus.OK));
-//  }
+  @Test
+  void versionEndpointReturnsCurrentVersion() {
+    authenticatedClient.get().uri("/version").exchange()
+        .expectStatus().isOk()
+        .expectBody().jsonPath("$.version").isEqualTo("v0.2.0");
+  }
+
+  @Test
+  void versionEndpointReturns401IfCredentialsAreInvalid() {
+    unauthenticatedClient.get().uri("/version").exchange()
+        .expectStatus().isUnauthorized();
+  }
 }
