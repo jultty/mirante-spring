@@ -8,8 +8,8 @@
   - [x] Ao receber o resultado, deve poder informar se está correto
 
 ## v0.3.0
-- [ ] Adicionar estruturas de dados para contas
-  - [x] Adicionar lógica para gerar tokens de acesso temporários
+- [x] Adicionar estruturas de dados para contas
+- [x] Implementar lógica de autenticação por tokens de acesso temporários
   - [ ] Somente um usuário autenticado pode enviar resultados
   - [ ] Somente um usuário autenticado pode alterar suas questões
   - [ ] Somente um usuário autenticado pode alterar seus conjuntos de questões
@@ -39,12 +39,16 @@
 - [ ] Conta docente
 
 ## v0.6.0
+- [ ] Revisão da interface gráfica de demonstração
 - [ ] Interface gráfica para criação de cursos
 - [ ] Conjunto de questões em inglês
 - [ ] Conjunto de questões de lógica
 
 ## 0.7.0
-- [ ] Página de documentação para desenvolvedores
+- [ ] Página de documentação melhorada
+  - [ ] Estilos/SSG
+  - [ ] Documentação para usuários
+  - [ ] Documentação para desenvolvedores
 - [ ] Verificar formatação de _Datetimes_ em JSON
   - Ver: <https://www.baeldung.com/jackson-serialize-dates?__s=m5n9kdgdsquuqqb9ufy2>
 - [ ] `/set/demo-set-pdp` deveria retornar todos os _ids_ de exercícios
