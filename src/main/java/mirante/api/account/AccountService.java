@@ -30,10 +30,7 @@ public class AccountService {
     Optional<Account> accountOpt =
       Optional.of(accountRepository.findByToken(token));
 
-    if (accountOpt.isPresent()) {
-      return Optional.of(accountOpt.orElseThrow());
-    }
-    return Optional.empty();
+    return Optional.of(accountOpt.orElseThrow());
 
   }
 }

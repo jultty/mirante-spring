@@ -28,7 +28,7 @@ class AccountController {
 
   @PostMapping("/account")
   @ResponseStatus(HttpStatus.CREATED)
-  Account newAccount(@RequestBody AccountRequest request) {
+  Account newAccount(@RequestBody AccountDTO request) {
 
     Account newAccount = new Account(
       request.registration,
@@ -55,7 +55,7 @@ class AccountController {
   }
 
   @GetMapping("/token")
-  String getToken(@RequestBody AccountRequest request) {
+  String getToken(@RequestBody AccountDTO request) {
 
       Optional<String> token =
         accountService.login(request.registration, request.password);
