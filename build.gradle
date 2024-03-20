@@ -41,10 +41,13 @@ dependencies {
   implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
   implementation 'org.springframework.security:spring-security-crypto:6.2.1'
   implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
+  implementation 'commons-io:commons-io:2.15.1'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework.boot:spring-boot-starter-web'
   testImplementation 'org.springframework.boot:spring-boot-starter-security'
   testImplementation 'org.springframework.security:spring-security-test'
+  testImplementation 'de.elnarion.util:plantuml-generator-util:2.4.1'
+  testImplementation group: 'com.credibledoc', name: 'plantuml-core', version: '1.0.51'
   runtimeOnly 'com.h2database:h2'
   umlDoclet "nl.talsmasoftware:umldoclet:2.1.1"
 }

@@ -1,0 +1,17 @@
+@startuml
+
+participant Exercise
+participant Option
+
+activate Exercise
+	Exercise -> Option : getExerciseId
+	activate Option
+		Option -> Exercise : getId
+		activate Exercise
+			Exercise --> Option
+		deactivate Exercise
+		Option --> Exercise
+	deactivate Option
+deactivate Exercise
+
+@enduml

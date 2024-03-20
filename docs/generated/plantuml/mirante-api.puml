@@ -1,0 +1,150 @@
+@startuml
+
+class mirante.api.ApiApplication {
+	{method}  {static} +main ( args : [Ljava.lang.String; ) : void
+}
+
+
+class mirante.api.account.Account {
+	{field} +email : String
+	{field} +name : String
+	{field} -password : String
+	{field} +registration : String
+	{field} +token : String
+	{method} +changePassword ( old_password : String , new_password : String ) : void
+	{method} +checkPassword ( password : String ) : Boolean
+	{method} +resetPassword ( old_password : String , new_password : String ) : void
+}
+
+
+class mirante.api.account.AccountService {
+	{field} ~accountRepository : mirante.api.account.AccountRepository
+	{method} +findByToken ( token : String ) : java.util.Optional
+	{method} +login ( registration : String , password : String ) : java.util.Optional
+}
+
+
+class mirante.api.course.Course {
+	{field} +id : String
+}
+
+
+class mirante.api.event.Event {
+	{field} -content : String
+	{field} -description : String
+	{field} -id : long
+	{field} -time : java.sql.Timestamp
+}
+
+
+class mirante.api.exercise.Exercise {
+	{field} -id : String
+	{field} -instruction : String
+	{method} +addOption ( option : mirante.api.exercise.option.Option ) : void
+	{method} +getSetId () : String
+}
+
+
+class mirante.api.exercise.ExerciseController {
+	{field} -repository : mirante.api.exercise.ExerciseRepository
+	{method} ~deleteExercise ( id : String ) : void
+	{method} ~getExercises () : java.util.List
+	{method} ~newExercise ( newExercise : mirante.api.exercise.Exercise ) : mirante.api.exercise.Exercise
+	{method} ~one ( id : String ) : mirante.api.exercise.Exercise
+}
+
+
+class mirante.api.exercise.ExerciseDTO {
+	{field} +id : String
+	{field} +instruction : String
+	{field} +set : String
+}
+
+
+class mirante.api.exercise.option.Option {
+	{field} -content : String
+	{field} -correct : Boolean
+	{field} -id : String
+	{field} -place : Integer
+	{method} +getExerciseId () : String
+}
+
+
+class mirante.api.exercise.option.OptionDTO {
+	{field} +content : String
+	{field} +correct : Boolean
+	{field} +exercise : String
+	{field} +id : String
+	{field} +place : Integer
+}
+
+
+enum mirante.api.exercise.set.Access {
+	{field} +COURSE
+	{field} +PRIVATE
+	{field} +PUBLIC
+}
+
+
+class mirante.api.exercise.set.ExerciseSet {
+	{field} +id : String
+	{field} +name : String
+}
+
+
+class mirante.api.exercise.set.ExerciseSetDTO {
+	{field} +id : String
+	{field} +name : String
+}
+
+
+class mirante.api.meta.MetaController {
+	{method} +version () : mirante.api.meta.MetaController$MetaData
+}
+
+
+class mirante.api.meta.MetaController$MetaData {
+	{field} ~version : String
+}
+
+
+class mirante.api.meta.MetaControllerTest {
+	{field} ~authenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
+	{field} ~client : org.springframework.test.web.reactive.server.WebTestClient
+	{field} -port : String
+	{field} ~unauthenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
+	{method} ~buildClients () : void
+	{method} ~versionEndpointReturns401IfCredentialsAreInvalid () : void
+	{method} ~versionEndpointReturns401IfUnauthenticated () : void
+	{method} ~versionEndpointReturnsCurrentVersion () : void
+}
+
+
+class mirante.api.result.Result {
+	{field} -id : long
+	{field} -time : java.sql.Timestamp
+}
+
+
+class mirante.api.security.WebSecurityConfig {
+	{method} +userDetailsService () : org.springframework.security.core.userdetails.UserDetailsService
+}
+
+
+
+
+mirante.api.account.Account -->  mirante.api.course.Course :  @ManyToOne\ncourse
+mirante.api.exercise.Exercise "1" o-- "0..*"  mirante.api.exercise.option.Option : options
+mirante.api.exercise.Exercise -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
+mirante.api.exercise.ExerciseDTO "1" o-- "0..*"  mirante.api.exercise.option.OptionDTO : options
+mirante.api.exercise.option.Option -->  mirante.api.exercise.Exercise :  @ManyToOne\nexercise
+mirante.api.exercise.set.ExerciseSet "1" o-- "0..*"  mirante.api.course.Course : courses
+mirante.api.exercise.set.ExerciseSet "1" o-- "0..*"  mirante.api.exercise.Exercise : exercises
+mirante.api.exercise.set.ExerciseSet -->  mirante.api.exercise.set.Access : access
+mirante.api.exercise.set.ExerciseSetDTO "1" o-- "0..*"  mirante.api.exercise.ExerciseDTO : exercises
+mirante.api.exercise.set.ExerciseSetDTO -->  mirante.api.exercise.set.Access : access
+mirante.api.meta.MetaController -->  mirante.api.meta.MetaController$MetaData : metadata
+mirante.api.result.Result -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
+
+
+@enduml
