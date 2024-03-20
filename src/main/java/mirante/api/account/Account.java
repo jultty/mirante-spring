@@ -9,7 +9,7 @@ import mirante.api.course.Course;
 
 @Entity
 public class Account {
-  
+
   @Id
   private String registration;
   private String name;
@@ -36,11 +36,7 @@ public class Account {
   Account() {}
 
   public Boolean checkPassword(String password) {
-    if (SecUtils.encoder.matches(password, this.password)) {
-      return true;
-    } else {
-      return false;
-    }
+    return SecUtils.encoder.matches(password, this.password);
   }
 
   public void changePassword(String old_password, String new_password) {

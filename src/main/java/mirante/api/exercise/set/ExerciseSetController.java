@@ -28,12 +28,10 @@ class ExerciseSetController {
 
   @GetMapping("/set/{id}")
   ExerciseSet one(@PathVariable String id) {
-    ExerciseSet set = repository.findById(id)
+    return repository.findById(id)
       .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND, "Exercise set with id ${id} not found")
           );
-
-    return set;
   }
 
   @DeleteMapping("/set/{id}")

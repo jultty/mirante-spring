@@ -3,7 +3,6 @@ package mirante.api.exercise;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import mirante.api.exercise.option.OptionDTO;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +21,14 @@ public class ExerciseController {
   @GetMapping("/exercise")
   List<ExerciseDTO> getExercises() {
     List<Exercise> exercises = repository.findAll();
-    List<ExerciseDTO> exerciseDTOs = new ArrayList<ExerciseDTO>();
+    List<ExerciseDTO> exerciseDTOs = new ArrayList<>();
 
     exercises.forEach(e -> {
       ExerciseDTO dto = new ExerciseDTO();
       dto.id = e.getId();
       dto.instruction = e.getInstruction();
       dto.set = e.getSetId();
-      dto.options = new HashSet<OptionDTO>();
+      dto.options = new HashSet<>();
       e.getOptions().forEach(o -> {
         OptionDTO optionDTO = new OptionDTO();
         optionDTO.id = o.getId();

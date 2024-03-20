@@ -46,8 +46,3 @@ public class ExerciseSet {
   public Access getAccess() { return access; }
 }
 
-enum Access {
-  PRIVATE,
-  PUBLIC,
-  COURSE,
-}

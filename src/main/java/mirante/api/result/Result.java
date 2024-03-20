@@ -1,6 +1,7 @@
 package mirante.api.result;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,10 +18,10 @@ public class Result {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private Timestamp time;
+  private Timestamp time = Timestamp.from(Instant.now());
 
   @ManyToOne @JoinColumn(name = "result_set", referencedColumnName = "id")
-  private ExerciseSet set;
+  private ExerciseSet set = new ExerciseSet();
 
   public Result() {}
 

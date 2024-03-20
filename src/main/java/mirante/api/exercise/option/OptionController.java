@@ -3,10 +3,6 @@ package mirante.api.exercise.option;
 import java.util.ArrayList;
 import java.util.List;
 
-import mirante.api.exercise.option.OptionDTO;
-
-import mirante.api.exercise.Exercise;
-import mirante.api.exercise.ExerciseDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,7 +20,7 @@ class OptionController {
   @GetMapping("/option")
   List<OptionDTO> all() {
     List<Option> options = repository.findAll();
-    List<OptionDTO> optionDTOs = new ArrayList<OptionDTO>();
+    List<OptionDTO> optionDTOs = new ArrayList<>();
 
     options.forEach(e -> {
       OptionDTO dto = new OptionDTO();

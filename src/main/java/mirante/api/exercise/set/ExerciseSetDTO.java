@@ -2,7 +2,6 @@ package mirante.api.exercise.set;
 
 import java.util.Set;
 
-import mirante.api.exercise.Exercise;
 import mirante.api.exercise.ExerciseDTO;
 
 public class ExerciseSetDTO {

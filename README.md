@@ -2,11 +2,15 @@
 
 Mirante is a data-oriented educational system that aims to minimize the loss of relevant data that could bring more insight into how we learn.
 
-This repository contains an implementation using Java and the Spring Boot Framework.
+This repository contains the Java source code and the associated documentation.
 
-## Running
+## Getting it
 
-After cloning or downloading this repository, you can use the included `gradlew` wrapper file to build it:
+Pre-built binaries are available on certain milestone versions. See the [releases](https://github.com/jultty/mirante/releases) for the available tags or go straight to the [latest](https://github.com/jultty/mirante/releases/latest) one.
+
+If you would like to build it yourself, first [clone](https://git-scm.com/docs/git-clone) or [download](https://github.com/jultty/mirante/archive/refs/heads/main.zip) this repository.
+
+Once you are in the root of your local copy, you can use the included `gradlew` wrapper file to build:
 
 ```sh
 ./gradlew build
@@ -14,7 +18,11 @@ After cloning or downloading this repository, you can use the included `gradlew`
 
 This will build Java `.jar` files in the `build/libs` directory.
 
-Once built, you can start the server using:
+## Running
+
+You will need a [Java runtime](https://www.java.com/download/) or [JDK](https://adoptium.net/) to run Mirante.
+
+Once you have downloaded or built a `.jar` file, you can start the server using:
 
 ```sh
 java -jar build/libs/mirante-<version>.jar
@@ -22,23 +30,23 @@ java -jar build/libs/mirante-<version>.jar
 
 Replace `<version>` with the current version, for example: `java -jar build/libs/mirante-0.2.0-SNAPSHOT.jar`.
 
-If you are unsure about the current version number, look into the `build/libs` directory for what files were generated, or check the `build.gradle` file.
+If you are unsure about the current version number, look into the `build/libs` directory for what files were generated, or check the `build.gradle` file for the `version` property.
 
 HTML forms meant as a minimal working front-end demo are available under `src/web/`. Given default port `8080` is usually in use, the forms send requests to port `8888` instead.
 
-To use them, set port 8888 when running:
+The current configuration defaults to port `8888`. If you'd like to set a different port, use the `-Dserver.port=<port number>` command line argument:
 
 ```sh
-java -Dserver.port=8888 -jar build/libs/mirante-<version>.jar
+java -Dserver.port=8871 -jar build/libs/mirante-<version>.jar
 ```
 
 ## Documentation
 
 To know more, go to the [documentation website](https://jultty.github.io/mirante/) for access to the latest available documentation.
 
-If you are looking for more formal descriptions of the system, a document explaining v0.1.0 can be found in the [docs](docs) directory. This document was adapted from the version submitted as part of a capstone project for the Applied Software Engineering course in IFSP's graduation program in Systems Analysis and Development.
+If you are looking for a formal description of the system, a [document](docs/reports/v0.1.1/relatorio.pdf) is available as part of the [v0.1.1 development report](docs/reports/v0.1.1). This document was adapted from the version submitted as part of a capstone project for the Applied Software Engineering course in IFSP's graduation program in Systems Analysis and Development.
 
-This main document will only be updated on major versions. For more up-to-date information, check the reports, also in the `docs` directory, or access the [documentation website](https://jultty.github.io/mirante/).
+This main document will only be updated on major versions. For more up-to-date information, check the [development reports](docs/reports) or access the [documentation website](https://jultty.github.io/mirante/).
 
 ## Development
 
