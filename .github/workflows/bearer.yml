@@ -1,0 +1,24 @@
+name: Bearer
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '33 08 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  SAST:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Static test
+        uses: bearer/bearer-action@v2
+        with:
+          scanner: sast
+      - name: Secrets scan
+        uses: bearer/bearer-action@v2
+        with:
+          scanner: secrets
