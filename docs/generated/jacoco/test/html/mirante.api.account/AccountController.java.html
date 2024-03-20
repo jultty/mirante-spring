@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mirante</a> &gt; <a href="index.source.html" class="el_package">mirante.api.account</a> &gt; <span class="el_source">AccountController.java</span></div><h1>AccountController.java</h1><pre class="source lang-java linenums">package mirante.api.account;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+@CrossOrigin
+@RestController
+class AccountController {
+  private final AccountRepository repository;
+
+  @Autowired
+  private AccountService accountService;
+
+<span class="fc" id="L19">  AccountController(AccountRepository repository) {</span>
+<span class="fc" id="L20">    this.repository = repository;</span>
+<span class="fc" id="L21">  }</span>
+
+  @GetMapping(&quot;/account&quot;)
+  List&lt;Account&gt; all() {
+
+<span class="nc" id="L26">    return repository.findAll();</span>
+  }
+
+  @PostMapping(&quot;/account&quot;)
+  @ResponseStatus(HttpStatus.CREATED)
+  Account newAccount(@RequestBody AccountDTO request) {
+
+<span class="nc" id="L33">    Account newAccount = new Account(</span>
+      request.registration,
+      request.name,
+      request.email,
+      request.password,
+      request.course
+    );
+
+<span class="nc" id="L41">    return repository.save(newAccount);</span>
+  }
+
+  @GetMapping(&quot;/account/{id}&quot;)
+  Account one(@PathVariable String id) {
+<span class="nc" id="L46">    return repository.findById(id)</span>
+<span class="nc" id="L47">      .orElseThrow(() -&gt; new ResponseStatusException(</span>
+            HttpStatus.NOT_FOUND, &quot;Account with id ${id} not found&quot;)
+          );
+  }
+
+  @DeleteMapping(&quot;/account/{id}&quot;)
+  void deleteAccount(@PathVariable String id) {
+<span class="nc" id="L54">    repository.deleteById(id);</span>
+<span class="nc" id="L55">  }</span>
+
+  @GetMapping(&quot;/token&quot;)
+  String getToken(@RequestBody AccountDTO request) {
+
+<span class="nc" id="L60">      Optional&lt;String&gt; token =</span>
+<span class="nc" id="L61">        accountService.login(request.registration, request.password);</span>
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">      if (token.isPresent()) {</span>
+<span class="nc" id="L64">        return &quot;{\&quot;token\&quot;:\&quot;&quot; + token.orElseThrow() + &quot;\&quot;}&quot;;</span>
+      } else
+<span class="nc" id="L66">        return &quot;Failed to generate token&quot;;</span>
+      }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

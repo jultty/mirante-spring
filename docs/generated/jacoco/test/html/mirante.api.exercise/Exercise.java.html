@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Exercise.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mirante</a> &gt; <a href="index.source.html" class="el_package">mirante.api.exercise</a> &gt; <span class="el_source">Exercise.java</span></div><h1>Exercise.java</h1><pre class="source lang-java linenums">package mirante.api.exercise;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import mirante.api.exercise.option.Option;
+import mirante.api.exercise.set.ExerciseSet;
+
+import java.util.Set;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+public class Exercise {
+
+  @Id @JsonProperty(&quot;id&quot;) private String id;
+  @JsonProperty(&quot;instruction&quot;) private String instruction;
+
+  @JsonManagedReference
+  @OneToMany @JoinColumn(name = &quot;exercise_option&quot;)
+  private Set&lt;Option&gt; options;
+
+  @JsonProperty(&quot;set&quot;)
+  @ManyToOne @JoinColumn(name = &quot;exercise_set&quot;, referencedColumnName = &quot;id&quot;)
+  private ExerciseSet set;
+
+<span class="nc" id="L29">  public Exercise() {}</span>
+
+<span class="nc" id="L31">  public Exercise(String id) {</span>
+<span class="nc" id="L32">    this.id = id;</span>
+<span class="nc" id="L33">  }</span>
+
+<span class="nc" id="L35">  public Exercise(String id, String instruction) {</span>
+<span class="nc" id="L36">    this.id = id;</span>
+<span class="nc" id="L37">    this.instruction = instruction;</span>
+<span class="nc" id="L38">  }</span>
+
+  public void addOption(Option option) {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (option.getExerciseId().equals(id)) {</span>
+<span class="nc" id="L42">      options.add(option);</span>
+    }
+<span class="nc" id="L44">  }</span>
+
+<span class="nc" id="L46">  public String getId() { return id; }</span>
+<span class="nc" id="L47">  public String getInstruction() { return instruction; }</span>
+<span class="nc" id="L48">  public String getSetId() { return set.getId(); }</span>
+<span class="nc" id="L49">  public Set&lt;Option&gt; getOptions() { return options; }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

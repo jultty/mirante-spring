@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mirante</a> &gt; <a href="index.source.html" class="el_package">mirante.api.account</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package mirante.api.account;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
+import mirante.api.course.Course;
+
+@Entity
+public class Account {
+
+  @Id
+  private String registration;
+  private String name;
+  private String email;
+  private String password;
+  private String token;
+
+  @ManyToOne @JoinColumn(name = &quot;account_course&quot;)
+  private Course course;
+
+  public Account(
+      String registration,
+      String name,
+      String email,
+      String password,
+<span class="fc" id="L28">      Course course) {</span>
+<span class="fc" id="L29">    this.registration = registration;</span>
+<span class="fc" id="L30">    this.name = name;</span>
+<span class="fc" id="L31">    this.email = email;</span>
+<span class="fc" id="L32">    this.password = SecUtils.encoder.encode(password);</span>
+<span class="fc" id="L33">    this.course = course;</span>
+<span class="fc" id="L34">  }</span>
+
+<span class="nc" id="L36">  Account() {}</span>
+
+  public Boolean checkPassword(String password) {
+<span class="fc" id="L39">    return SecUtils.encoder.matches(password, this.password);</span>
+  }
+
+  public void changePassword(String old_password, String new_password) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (SecUtils.encoder.matches(old_password, this.password)) {</span>
+<span class="nc" id="L44">      this.password = SecUtils.encoder.encode(new_password);</span>
+    }
+<span class="nc" id="L46">  }</span>
+
+  public void resetPassword(String old_password, String new_password) {
+<span class="nc" id="L49">     throw new UnsupportedOperationException();</span>
+  }
+
+<span class="nc" id="L52">  public String getRegistration() { return registration; }</span>
+<span class="nc" id="L53">  public void setRegistration(String registration) { this.registration = registration; }</span>
+<span class="nc" id="L54">  public String getName() { return name; }</span>
+<span class="nc" id="L55">  public void setName(String name) { this.name = name; }</span>
+<span class="nc" id="L56">  public String getEmail() { return email; }</span>
+<span class="nc" id="L57">  public void setEmail(String email) { this.email = email; }</span>
+<span class="nc" id="L58">  public Course getCourse() { return course; }</span>
+<span class="nc" id="L59">  public void setCourse(Course course) { this.course = course; }</span>
+<span class="nc" id="L60">  String getToken() { return token; }</span>
+<span class="nc" id="L61">  void setToken(String token) { this.token = token; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

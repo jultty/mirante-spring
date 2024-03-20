@@ -36,13 +36,14 @@
       - [ ] Accuracy
 
 ## v0.5.0
-- [ ] Conta docente
-
-## v0.6.0
 - [ ] Revisão da interface gráfica de demonstração
 - [ ] Interface gráfica para criação de cursos
 - [ ] Conjunto de questões em inglês
 - [ ] Conjunto de questões de lógica
+
+## v0.6.0
+- [ ] Verificação de um exercício e suas opções por docentes
+  - [ ] Armazenar hash da versão verificada]
 
 ## 0.7.0
 - [ ] Página de documentação melhorada

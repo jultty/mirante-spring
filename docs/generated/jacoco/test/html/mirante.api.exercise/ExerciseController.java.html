@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExerciseController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mirante</a> &gt; <a href="index.source.html" class="el_package">mirante.api.exercise</a> &gt; <span class="el_source">ExerciseController.java</span></div><h1>ExerciseController.java</h1><pre class="source lang-java linenums">package mirante.api.exercise;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+import mirante.api.exercise.option.OptionDTO;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+@CrossOrigin
+@RestController
+public class ExerciseController {
+  private final ExerciseRepository repository;
+
+<span class="fc" id="L17">  ExerciseController(ExerciseRepository repository) {</span>
+<span class="fc" id="L18">    this.repository = repository;</span>
+<span class="fc" id="L19">  }</span>
+
+  @GetMapping(&quot;/exercise&quot;)
+  List&lt;ExerciseDTO&gt; getExercises() {
+<span class="nc" id="L23">    List&lt;Exercise&gt; exercises = repository.findAll();</span>
+<span class="nc" id="L24">    List&lt;ExerciseDTO&gt; exerciseDTOs = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L26">    exercises.forEach(e -&gt; {</span>
+<span class="nc" id="L27">      ExerciseDTO dto = new ExerciseDTO();</span>
+<span class="nc" id="L28">      dto.id = e.getId();</span>
+<span class="nc" id="L29">      dto.instruction = e.getInstruction();</span>
+<span class="nc" id="L30">      dto.set = e.getSetId();</span>
+<span class="nc" id="L31">      dto.options = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L32">      e.getOptions().forEach(o -&gt; {</span>
+<span class="nc" id="L33">        OptionDTO optionDTO = new OptionDTO();</span>
+<span class="nc" id="L34">        optionDTO.id = o.getId();</span>
+<span class="nc" id="L35">        optionDTO.content = o.getContent();</span>
+<span class="nc" id="L36">        optionDTO.place = o.getPlace();</span>
+<span class="nc" id="L37">        optionDTO.correct = o.getCorrect();</span>
+<span class="nc" id="L38">        optionDTO.exercise = o.getExerciseId();</span>
+<span class="nc" id="L39">        dto.options.add(optionDTO);</span>
+<span class="nc" id="L40">      });</span>
+<span class="nc" id="L41">      exerciseDTOs.add(dto);</span>
+<span class="nc" id="L42">    });</span>
+
+<span class="nc" id="L44">    return exerciseDTOs;</span>
+  }
+
+
+  @PostMapping(&quot;/exercise&quot;)
+  @ResponseStatus(HttpStatus.CREATED)
+  Exercise newExercise(@RequestBody Exercise newExercise) {
+<span class="nc" id="L51">    return repository.save(newExercise);</span>
+  }
+
+  @GetMapping(&quot;/exercise/{id}&quot;)
+  Exercise one(@PathVariable String id) {
+<span class="nc" id="L56">    return repository.findById(id)</span>
+<span class="nc" id="L57">      .orElseThrow(() -&gt; new ResponseStatusException(</span>
+            HttpStatus.NOT_FOUND, &quot;Exercise with id ${id} not found&quot;)
+          );
+  }
+
+  @DeleteMapping(&quot;/exercise/{id}&quot;)
+  void deleteExercise(@PathVariable String id) {
+<span class="nc" id="L64">    repository.deleteById(id);</span>
+<span class="nc" id="L65">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

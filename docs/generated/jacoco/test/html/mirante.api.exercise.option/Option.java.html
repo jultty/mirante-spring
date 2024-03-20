@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Option.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mirante</a> &gt; <a href="index.source.html" class="el_package">mirante.api.exercise.option</a> &gt; <span class="el_source">Option.java</span></div><h1>Option.java</h1><pre class="source lang-java linenums">package mirante.api.exercise.option;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import mirante.api.exercise.Exercise;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+public class Option {
+  @Id @JsonProperty(&quot;id&quot;) private String id;
+  @JsonProperty(&quot;content&quot;) private String content;
+  @JsonProperty(&quot;place&quot;) private Integer place;
+  @JsonProperty(&quot;correct&quot;) private Boolean correct;
+
+  @JsonBackReference
+  @JsonProperty(&quot;exercise_id&quot;)
+  @ManyToOne @JoinColumn(name = &quot;exercise_option&quot;, referencedColumnName = &quot;id&quot;)
+  private Exercise exercise;
+
+<span class="nc" id="L25">  public Option() {}</span>
+
+<span class="nc" id="L27">  public String getId() { return id; }</span>
+<span class="nc" id="L28">  public String getContent() { return content; }</span>
+<span class="nc" id="L29">  public Integer getPlace() { return place; }</span>
+<span class="nc" id="L30">  public Boolean getCorrect() { return correct; }</span>
+<span class="nc" id="L31">  public Exercise getExercise() { return exercise; }</span>
+<span class="nc" id="L32">  public String getExerciseId() { return exercise.getId(); }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

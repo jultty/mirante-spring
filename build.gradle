@@ -22,8 +22,15 @@ repositories {
   mavenCentral()
 }
 
+tasks.register('copyDocs', Copy) {
+    dependsOn jacocoTestReport, javadoc
+    from layout.buildDirectory.dir("reports")
+    from layout.buildDirectory.dir("docs")
+    into layout.projectDirectory.dir("docs/generated")
+}
+
 task fullBuild(type: GradleBuild) {
-  tasks = [ 'jacocoTestCoverageVerification', 'jacocoTestReport', 'build' ]
+  tasks = [ 'jacocoTestCoverageVerification', 'jacocoTestReport', 'build', 'javadoc', 'copyDocs' ]
 }
 
 dependencies {
