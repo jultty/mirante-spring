@@ -22,7 +22,7 @@ public class AccountService {
       accountRepository.save(account);
       return Optional.of(token);
     }
-    return Optional.of("Authentication failed");
+    return Optional.empty();
   }
 
   public Optional<Account> findByToken(String token) {

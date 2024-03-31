@@ -22,7 +22,6 @@ class AccountController {
 
   @GetMapping("/account")
   List<Account> all() {
-
     return repository.findAll();
   }
 

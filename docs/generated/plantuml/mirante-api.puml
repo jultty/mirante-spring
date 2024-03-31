@@ -1,6 +1,6 @@
 @startuml
 
-class mirante.api.ApiApplication {
+class mirante.api.Mirante {
 	{method}  {static} +main ( args : [Ljava.lang.String; ) : void
 }
 
@@ -17,8 +17,13 @@ class mirante.api.account.Account {
 }
 
 
+interface mirante.api.account.AccountRepository {
+	{method}  {abstract} +findByToken ( token : String ) : mirante.api.account.Account
+	{method}  {abstract} +login ( registration : String , password : String ) : mirante.api.account.Account
+}
+
+
 class mirante.api.account.AccountService {
-	{field} ~accountRepository : mirante.api.account.AccountRepository
 	{method} +findByToken ( token : String ) : java.util.Optional
 	{method} +login ( registration : String , password : String ) : java.util.Optional
 }
@@ -108,25 +113,34 @@ class mirante.api.meta.MetaController$MetaData {
 }
 
 
-class mirante.api.meta.MetaControllerTest {
-	{field} ~authenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
-	{field} ~client : org.springframework.test.web.reactive.server.WebTestClient
-	{field} -port : String
-	{field} ~unauthenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
-	{method} ~buildClients () : void
-	{method} ~versionEndpointReturns401IfCredentialsAreInvalid () : void
-	{method} ~versionEndpointReturns401IfUnauthenticated () : void
-	{method} ~versionEndpointReturnsCurrentVersion () : void
-}
-
-
 class mirante.api.result.Result {
 	{field} -id : long
 	{field} -time : java.sql.Timestamp
 }
 
 
-class mirante.api.security.WebSecurityConfig {
+class mirante.api.security.AuthenticationTest {
+	{field} ~authenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
+	{field} ~invalidAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
+	{field} ~noAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
+	{field} -port : String
+	{method} ~buildClients () : void
+	{method} ~exerciseEndpointReturnsForbiddenIfUnauthenticated () : void
+	{method} ~versionEndpointReturnsCurrentVersionWithAuthentication () : void
+	{method} ~versionEndpointReturnsCurrentVersionWithInvalidAuthentication () : void
+	{method} ~versionEndpointReturnsCurrentVersionWithoutAuthentication () : void
+}
+
+
+class mirante.api.security.SecUtils {
+	{field} {static} +encoder : org.springframework.security.crypto.argon2.Argon2PasswordEncoder
+}
+
+
+class mirante.api.security.SecurityConfiguration {
+	{method} +authenticationManager ( userDetailsService : org.springframework.security.core.userdetails.UserDetailsService , passwordEncoder : org.springframework.security.crypto.password.PasswordEncoder ) : org.springframework.security.authentication.AuthenticationManager
+	{method} +filterChain ( http : org.springframework.security.config.annotation.web.builders.HttpSecurity ) : org.springframework.security.web.SecurityFilterChain
+	{method} +passwordEncoder () : org.springframework.security.crypto.password.PasswordEncoder
 	{method} +userDetailsService () : org.springframework.security.core.userdetails.UserDetailsService
 }
 
@@ -134,6 +148,7 @@ class mirante.api.security.WebSecurityConfig {
 
 
 mirante.api.account.Account -->  mirante.api.course.Course :  @ManyToOne\ncourse
+mirante.api.account.AccountService -->  mirante.api.account.AccountRepository : accountRepository
 mirante.api.exercise.Exercise "1" o-- "0..*"  mirante.api.exercise.option.Option : options
 mirante.api.exercise.Exercise -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
 mirante.api.exercise.ExerciseDTO "1" o-- "0..*"  mirante.api.exercise.option.OptionDTO : options

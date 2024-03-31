@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
 import mirante.api.course.Course;
+import mirante.api.security.SecUtils;
 
 @Entity
 public class Account {
@@ -59,4 +60,5 @@ public class Account {
   public void setCourse(Course course) { this.course = course; }
   String getToken() { return token; }
   void setToken(String token) { this.token = token; }
+
 }

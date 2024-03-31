@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MetaController {
 
   public static final class MetaData {
-    @JsonProperty("version") String version = "v0.2.0";
+    @JsonProperty("version") String version = "v0.3.0";
   }
 
   MetaData metadata = new MetaData();

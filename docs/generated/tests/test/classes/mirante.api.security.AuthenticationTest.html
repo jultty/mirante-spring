@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - AuthenticationTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>AuthenticationTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/mirante.api.security.html">mirante.api.security</a> &gt; AuthenticationTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.493s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">exerciseEndpointReturnsForbiddenIfUnauthenticated()</td>
+<td class="success">0.042s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">versionEndpointReturnsCurrentVersionWithInvalidAuthentication()</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">versionEndpointReturnsCurrentVersionWithoutAuthentication()</td>
+<td class="success">1.435s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2024-03-31T19:56:21.625-03:00  INFO 3558797 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [mirante.api.security.AuthenticationTest]: AuthenticationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-03-31T19:56:21.633-03:00  INFO 3558797 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration mirante.api.Mirante for test class mirante.api.security.AuthenticationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2024-03-31T19:56:21.672-03:00  INFO 3558797 --- [    Test worker] m.api.security.AuthenticationTest        : Starting AuthenticationTest using Java 17.0.10 with PID 3558797 (started by juno in /home/juno/git/hub/mirante)
+2024-03-31T19:56:21.672-03:00  INFO 3558797 --- [    Test worker] m.api.security.AuthenticationTest        : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-03-31T19:56:21.929-03:00  INFO 3558797 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-31T19:56:21.952-03:00  INFO 3558797 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 7 JPA repository interfaces.
+2024-03-31T19:56:22.449-03:00  INFO 3558797 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8889 (http)
+2024-03-31T19:56:22.491-03:00  INFO 3558797 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-03-31T19:56:22.492-03:00  INFO 3558797 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-31T19:56:22.635-03:00  INFO 3558797 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-03-31T19:56:22.638-03:00  INFO 3558797 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 964 ms
+2024-03-31T19:56:22.672-03:00  INFO 3558797 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-03-31T19:56:22.674-03:00  INFO 3558797 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:mirante user=DEV
+2024-03-31T19:56:22.674-03:00  INFO 3558797 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-03-31T19:56:22.675-03:00  INFO 3558797 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mirante'
+2024-03-31T19:56:22.839-03:00  INFO 3558797 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-31T19:56:22.843-03:00  INFO 3558797 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-03-31T19:56:22.849-03:00  INFO 3558797 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-31T19:56:23.072-03:00  INFO 3558797 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-31T19:56:23.122-03:00  INFO 3558797 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-31T19:56:23.381-03:00  WARN 3558797 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-31T19:56:23.862-03:00  INFO 3558797 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1da1f49b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@576ebd91, org.springframework.security.web.context.SecurityContextHolderFilter@3a34e037, org.springframework.security.web.header.HeaderWriterFilter@7cfe8826, org.springframework.web.filter.CorsFilter@636a6bfb, org.springframework.security.web.csrf.CsrfFilter@55500549, org.springframework.security.web.authentication.logout.LogoutFilter@1c3ac7f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f1bd075, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@925ac16, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@794433b5, org.springframework.security.web.access.ExceptionTranslationFilter@69d1e129, org.springframework.security.web.access.intercept.AuthorizationFilter@9f268d3]
+2024-03-31T19:56:24.217-03:00  INFO 3558797 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8889 (http) with context path ''
+2024-03-31T19:56:24.231-03:00  INFO 3558797 --- [    Test worker] m.api.security.AuthenticationTest        : Started AuthenticationTest in 2.592 seconds (process running for 29.773)
+2024-03-31T19:56:25.140-03:00  INFO 3558797 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-31T19:56:25.141-03:00  INFO 3558797 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-03-31T19:56:25.143-03:00  INFO 3558797 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.5</a> at Mar 31, 2024, 7:56:28 PM</p>
+</div>
+</div>
+</body>
+</html>

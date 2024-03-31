@@ -28,7 +28,7 @@ Once you have downloaded or built a `.jar` file, you can start the server using:
 java -jar build/libs/mirante-<version>.jar
 ```
 
-Replace `<version>` with the current version, for example: `java -jar build/libs/mirante-0.2.0-SNAPSHOT.jar`.
+Replace `<version>` with the current version, for example: `java -jar build/libs/mirante-0.3.0-SNAPSHOT.jar`.
 
 If you are unsure about the current version number, look into the `build/libs` directory for what files were generated, or check the `build.gradle` file for the `version` property.
 

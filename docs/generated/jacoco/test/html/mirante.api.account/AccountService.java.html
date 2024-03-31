@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 <span class="nc" id="L22">      accountRepository.save(account);</span>
 <span class="nc" id="L23">      return Optional.of(token);</span>
     }
-<span class="nc" id="L25">    return Optional.of(&quot;Authentication failed&quot;);</span>
+<span class="nc" id="L25">    return Optional.empty();</span>
   }
 
   public Optional&lt;Account&gt; findByToken(String token) {
@@ -34,4 +34,4 @@ import org.springframework.stereotype.Service;
 
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
