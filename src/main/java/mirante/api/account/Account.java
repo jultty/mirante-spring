@@ -17,6 +17,7 @@ public class Account {
   private String email;
   private String password;
   private String token;
+  private Boolean verified;
 
   @ManyToOne @JoinColumn(name = "account_course")
   private Course course;
@@ -32,6 +33,7 @@ public class Account {
     this.email = email;
     this.password = SecUtils.encoder.encode(password);
     this.course = course;
+    this.verified = false;
   }
 
   Account() {}
@@ -44,10 +46,6 @@ public class Account {
     if (SecUtils.encoder.matches(old_password, this.password)) {
       this.password = SecUtils.encoder.encode(new_password);
     }
-  }
-
-  public void resetPassword(String old_password, String new_password) {
-     throw new UnsupportedOperationException();
   }
 
   public String getRegistration() { return registration; }

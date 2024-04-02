@@ -11,10 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin
 @RestController
 class AccountController {
-  private final AccountRepository repository;
 
   @Autowired
   private AccountService accountService;
+
+  private final AccountRepository repository;
 
   AccountController(AccountRepository repository) {
     this.repository = repository;
@@ -25,27 +26,12 @@ class AccountController {
     return repository.findAll();
   }
 
-  @PostMapping("/account")
-  @ResponseStatus(HttpStatus.CREATED)
-  Account newAccount(@RequestBody AccountDTO request) {
-
-    Account newAccount = new Account(
-      request.registration,
-      request.name,
-      request.email,
-      request.password,
-      request.course
-    );
-
-    return repository.save(newAccount);
-  }
-
   @GetMapping("/account/{id}")
   Account one(@PathVariable String id) {
     return repository.findById(id)
-      .orElseThrow(() -> new ResponseStatusException(
+        .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND, "Account with id ${id} not found")
-          );
+        );
   }
 
   @DeleteMapping("/account/{id}")
@@ -53,15 +39,4 @@ class AccountController {
     repository.deleteById(id);
   }
 
-  @GetMapping("/token")
-  String getToken(@RequestBody AccountDTO request) {
-
-      Optional<String> token =
-        accountService.login(request.registration, request.password);
-
-      if (token.isPresent()) {
-        return "{\"token\":\"" + token.orElseThrow() + "\"}";
-      } else
-        return "Failed to generate token";
-      }
 }

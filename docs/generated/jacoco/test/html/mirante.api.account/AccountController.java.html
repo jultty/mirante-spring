@@ -11,58 +11,33 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin
 @RestController
 class AccountController {
-  private final AccountRepository repository;
 
   @Autowired
   private AccountService accountService;
 
-<span class="fc" id="L19">  AccountController(AccountRepository repository) {</span>
-<span class="fc" id="L20">    this.repository = repository;</span>
-<span class="fc" id="L21">  }</span>
+  private final AccountRepository repository;
+
+<span class="fc" id="L20">  AccountController(AccountRepository repository) {</span>
+<span class="fc" id="L21">    this.repository = repository;</span>
+<span class="fc" id="L22">  }</span>
 
   @GetMapping(&quot;/account&quot;)
   List&lt;Account&gt; all() {
-<span class="nc" id="L25">    return repository.findAll();</span>
-  }
-
-  @PostMapping(&quot;/account&quot;)
-  @ResponseStatus(HttpStatus.CREATED)
-  Account newAccount(@RequestBody AccountDTO request) {
-
-<span class="nc" id="L32">    Account newAccount = new Account(</span>
-      request.registration,
-      request.name,
-      request.email,
-      request.password,
-      request.course
-    );
-
-<span class="nc" id="L40">    return repository.save(newAccount);</span>
+<span class="nc" id="L26">    return repository.findAll();</span>
   }
 
   @GetMapping(&quot;/account/{id}&quot;)
   Account one(@PathVariable String id) {
-<span class="nc" id="L45">    return repository.findById(id)</span>
-<span class="nc" id="L46">      .orElseThrow(() -&gt; new ResponseStatusException(</span>
+<span class="nc" id="L31">    return repository.findById(id)</span>
+<span class="nc" id="L32">        .orElseThrow(() -&gt; new ResponseStatusException(</span>
             HttpStatus.NOT_FOUND, &quot;Account with id ${id} not found&quot;)
-          );
+        );
   }
 
   @DeleteMapping(&quot;/account/{id}&quot;)
   void deleteAccount(@PathVariable String id) {
-<span class="nc" id="L53">    repository.deleteById(id);</span>
-<span class="nc" id="L54">  }</span>
+<span class="nc" id="L39">    repository.deleteById(id);</span>
+<span class="nc" id="L40">  }</span>
 
-  @GetMapping(&quot;/token&quot;)
-  String getToken(@RequestBody AccountDTO request) {
-
-<span class="nc" id="L59">      Optional&lt;String&gt; token =</span>
-<span class="nc" id="L60">        accountService.login(request.registration, request.password);</span>
-
-<span class="nc bnc" id="L62" title="All 2 branches missed.">      if (token.isPresent()) {</span>
-<span class="nc" id="L63">        return &quot;{\&quot;token\&quot;:\&quot;&quot; + token.orElseThrow() + &quot;\&quot;}&quot;;</span>
-      } else
-<span class="nc" id="L65">        return &quot;Failed to generate token&quot;;</span>
-      }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

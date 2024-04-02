@@ -17,6 +17,7 @@ public class Account {
   private String email;
   private String password;
   private String token;
+  private Boolean verified;
 
   @ManyToOne @JoinColumn(name = &quot;account_course&quot;)
   private Course course;
@@ -26,40 +27,37 @@ public class Account {
       String name,
       String email,
       String password,
-<span class="fc" id="L29">      Course course) {</span>
-<span class="fc" id="L30">    this.registration = registration;</span>
-<span class="fc" id="L31">    this.name = name;</span>
-<span class="fc" id="L32">    this.email = email;</span>
-<span class="fc" id="L33">    this.password = SecUtils.encoder.encode(password);</span>
-<span class="fc" id="L34">    this.course = course;</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L30">      Course course) {</span>
+<span class="fc" id="L31">    this.registration = registration;</span>
+<span class="fc" id="L32">    this.name = name;</span>
+<span class="fc" id="L33">    this.email = email;</span>
+<span class="fc" id="L34">    this.password = SecUtils.encoder.encode(password);</span>
+<span class="fc" id="L35">    this.course = course;</span>
+<span class="fc" id="L36">    this.verified = false;</span>
+<span class="fc" id="L37">  }</span>
 
-<span class="nc" id="L37">  Account() {}</span>
+<span class="nc" id="L39">  Account() {}</span>
 
   public Boolean checkPassword(String password) {
-<span class="fc" id="L40">    return SecUtils.encoder.matches(password, this.password);</span>
+<span class="fc" id="L42">    return SecUtils.encoder.matches(password, this.password);</span>
   }
 
   public void changePassword(String old_password, String new_password) {
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    if (SecUtils.encoder.matches(old_password, this.password)) {</span>
-<span class="nc" id="L45">      this.password = SecUtils.encoder.encode(new_password);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (SecUtils.encoder.matches(old_password, this.password)) {</span>
+<span class="nc" id="L47">      this.password = SecUtils.encoder.encode(new_password);</span>
     }
-<span class="nc" id="L47">  }</span>
+<span class="nc" id="L49">  }</span>
 
-  public void resetPassword(String old_password, String new_password) {
-<span class="nc" id="L50">     throw new UnsupportedOperationException();</span>
-  }
-
-<span class="nc" id="L53">  public String getRegistration() { return registration; }</span>
-<span class="nc" id="L54">  public void setRegistration(String registration) { this.registration = registration; }</span>
-<span class="nc" id="L55">  public String getName() { return name; }</span>
-<span class="nc" id="L56">  public void setName(String name) { this.name = name; }</span>
-<span class="nc" id="L57">  public String getEmail() { return email; }</span>
-<span class="nc" id="L58">  public void setEmail(String email) { this.email = email; }</span>
-<span class="nc" id="L59">  public Course getCourse() { return course; }</span>
-<span class="nc" id="L60">  public void setCourse(Course course) { this.course = course; }</span>
-<span class="nc" id="L61">  String getToken() { return token; }</span>
-<span class="nc" id="L62">  void setToken(String token) { this.token = token; }</span>
+<span class="nc" id="L51">  public String getRegistration() { return registration; }</span>
+<span class="nc" id="L52">  public void setRegistration(String registration) { this.registration = registration; }</span>
+<span class="nc" id="L53">  public String getName() { return name; }</span>
+<span class="nc" id="L54">  public void setName(String name) { this.name = name; }</span>
+<span class="nc" id="L55">  public String getEmail() { return email; }</span>
+<span class="nc" id="L56">  public void setEmail(String email) { this.email = email; }</span>
+<span class="nc" id="L57">  public Course getCourse() { return course; }</span>
+<span class="nc" id="L58">  public void setCourse(Course course) { this.course = course; }</span>
+<span class="nc" id="L59">  String getToken() { return token; }</span>
+<span class="nc" id="L60">  void setToken(String token) { this.token = token; }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

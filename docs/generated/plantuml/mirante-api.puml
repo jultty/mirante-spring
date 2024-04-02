@@ -11,9 +11,17 @@ class mirante.api.account.Account {
 	{field} -password : String
 	{field} +registration : String
 	{field} +token : String
+	{field} -verified : Boolean
 	{method} +changePassword ( old_password : String , new_password : String ) : void
 	{method} +checkPassword ( password : String ) : Boolean
-	{method} +resetPassword ( old_password : String , new_password : String ) : void
+}
+
+
+class mirante.api.account.AccountDTO {
+	{field} +email : String
+	{field} +name : String
+	{field} +password : String
+	{field} +registration : String
 }
 
 
@@ -119,13 +127,27 @@ class mirante.api.result.Result {
 }
 
 
+class mirante.api.security.AuthenticationController {
+	{method} ~authHealth () : void
+	{method} ~getToken ( request : mirante.api.account.AccountDTO ) : String
+	{method} ~newAccount ( request : mirante.api.account.AccountDTO ) : mirante.api.account.Account
+	{method} ~token () : void
+}
+
+
 class mirante.api.security.AuthenticationTest {
 	{field} ~authenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
 	{field} ~invalidAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
 	{field} ~noAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
 	{field} -port : String
+	{method} ~authEndpointReturnsOkWithAuthentication () : void
+	{method} ~authEndpointReturnsOkWithInvalidAuthentication () : void
+	{method} ~authEndpointReturnsOkWithoutAuthentication () : void
 	{method} ~buildClients () : void
 	{method} ~exerciseEndpointReturnsForbiddenIfUnauthenticated () : void
+	{method} ~tokenEndpointReturnsOkWithAuthentication () : void
+	{method} ~tokenEndpointReturnsOkWithInvalidAuthentication () : void
+	{method} ~tokenEndpointReturnsOkWithoutAuthentication () : void
 	{method} ~versionEndpointReturnsCurrentVersionWithAuthentication () : void
 	{method} ~versionEndpointReturnsCurrentVersionWithInvalidAuthentication () : void
 	{method} ~versionEndpointReturnsCurrentVersionWithoutAuthentication () : void
@@ -148,6 +170,7 @@ class mirante.api.security.SecurityConfiguration {
 
 
 mirante.api.account.Account -->  mirante.api.course.Course :  @ManyToOne\ncourse
+mirante.api.account.AccountDTO -->  mirante.api.course.Course : course
 mirante.api.account.AccountService -->  mirante.api.account.AccountRepository : accountRepository
 mirante.api.exercise.Exercise "1" o-- "0..*"  mirante.api.exercise.option.Option : options
 mirante.api.exercise.Exercise -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
@@ -160,6 +183,8 @@ mirante.api.exercise.set.ExerciseSetDTO "1" o-- "0..*"  mirante.api.exercise.Exe
 mirante.api.exercise.set.ExerciseSetDTO -->  mirante.api.exercise.set.Access : access
 mirante.api.meta.MetaController -->  mirante.api.meta.MetaController$MetaData : metadata
 mirante.api.result.Result -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
+mirante.api.security.AuthenticationController *--  mirante.api.account.AccountRepository : repository
+mirante.api.security.AuthenticationController -->  mirante.api.account.AccountService : accountService
 
 
 @enduml

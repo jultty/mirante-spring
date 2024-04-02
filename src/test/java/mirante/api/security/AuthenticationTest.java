@@ -58,9 +58,46 @@ public class AuthenticationTest {
         .expectBody().jsonPath("$.version").isEqualTo("v0.3.0");
   }
 
+  @Test
   void versionEndpointReturnsCurrentVersionWithAuthentication() {
     authenticatedClient.get().uri("/version").exchange()
         .expectStatus().isOk()
         .expectBody().jsonPath("$.version").isEqualTo("v0.3.0");
+  }
+
+  @Test
+  void authEndpointReturnsOkWithoutAuthentication() {
+    noAuthenticationClient.get().uri("/auth").exchange()
+        .expectStatus().isOk();
+  }
+
+  @Test
+  void authEndpointReturnsOkWithInvalidAuthentication() {
+    invalidAuthenticationClient.get().uri("/auth").exchange()
+        .expectStatus().isOk();
+  }
+
+  @Test
+  void authEndpointReturnsOkWithAuthentication() {
+    authenticatedClient.get().uri("/auth").exchange()
+        .expectStatus().isOk();
+  }
+
+  @Test
+  void tokenEndpointReturnsOkWithoutAuthentication() {
+    noAuthenticationClient.get().uri("/auth/token/health").exchange()
+        .expectStatus().isOk();
+  }
+
+  @Test
+  void tokenEndpointReturnsOkWithInvalidAuthentication() {
+    invalidAuthenticationClient.get().uri("/auth/token/health").exchange()
+        .expectStatus().isOk();
+  }
+
+  @Test
+  void tokenEndpointReturnsOkWithAuthentication() {
+    authenticatedClient.get().uri("/auth/token/health").exchange()
+        .expectStatus().isOk();
   }
 }

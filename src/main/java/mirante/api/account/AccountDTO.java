@@ -2,13 +2,13 @@ package mirante.api.account;
 
 import mirante.api.course.Course;
 
-class AccountDTO {
+public class AccountDTO {
 
-  String registration;
-  String name;
-  String email;
-  String password;
-  Course course;
+  public String registration;
+  public String name;
+  public String email;
+  public String password;
+  public Course course;
 
   AccountDTO(
       String registration,
