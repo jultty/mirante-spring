@@ -45,7 +45,7 @@ public class AuthenticationController {
 
   @GetMapping("/auth/token/health")
   @ResponseStatus(HttpStatus.OK)
-  void token() {}
+  void tokenHealth() {}
 
   @PostMapping("/auth")
   @ResponseStatus(HttpStatus.CREATED)
