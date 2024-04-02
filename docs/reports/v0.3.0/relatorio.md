@@ -1,11 +1,9 @@
 # Relatório de Desenvolvimento: Autenticação
-Juno Takano
-
-terça, 02 de abril de 2024, 10:12:34 GMT-03
+Juno Takano • ter 02 abr 2024 13:24:18 GMT-03
 
 Durante os meses de março e abril está sendo implementado um mecanismo de autenticação através dos endpoints `/auth` e `/auth/token`.
 
-# Março
+## Março
 
 No começo do mês de março foi realizado um trabalho de [reestruturação das respostas](https://github.com/jultty/mirante/commit/6af74189dc3f51c9174908a8494a0378693931d2) nos endpoints `/exercise`e `/option`.
 
@@ -42,6 +40,8 @@ Na última semana do mês, a configuração de segurança [foi consolidada](http
 - Foi adicionada uma classe de [configuração de segurança](https://github.com/jultty/mirante/commit/14394af16002da4deecc44d1df22a6420d39412a#diff-165cdea4c467c61ee81e8580807a1e95c7958cfdd8a5eada9c194d9c0dbc5596) que substitui a configuração automática provida pelo framework.
 - No commit referenciado no link acima, foi definido o endpoint `/version` como público e todos os demais como protegidos pelo mecanismo de autenticação.
 - Foram definidos o mecanismo de codificação das informações de autenticação através do [algoritmo escolhido previamente](https://github.com/jultty/mirante/blob/main/docs/reports/v0.1.2/relatorio.md), Argon 2.
+
+## Abril
 - Foi criado um controlador especificamente para autenticação, [`mirante.api.security.AuthenticationController`](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-5f1c19c438f306eb22f85313083aa9d38e27457ea5855311ad41c0e29c098c1c).
 - O endpoint de criação de contas `/account` e endpoint de autenticação `/token` foi [movido](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-93bc02e314f5e394053842ea3f6b2095c896f65fa575abf2bfbc1fa48b73722b) da classe `AccountController`, pertencente ao pacote `mirante.api.account` para a classe `AuthenticationController`, do pacote `mirante.api.security`.
 - A configuração de segurança [foi atualizada](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-165cdea4c467c61ee81e8580807a1e95c7958cfdd8a5eada9c194d9c0dbc5596) para que estes novos endpoints também fossem públicos. Ficaram como públicos os endpoints `version`, `auth`, e qualquer endpoint cuja URL seja derivada de `auth`, por exemplo, `auth/health`, utilizado para verificar o status do serviço de autenticação e para os [testes](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-f18fb4239bba98cb1510c4bbcfcc0b0297d8b99bfe0c498eddefeab2a6d0d5a9) implementados.
