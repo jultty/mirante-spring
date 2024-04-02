@@ -40,13 +40,13 @@ exerciseSetDropdown.addEventListener('input', function () {
 
       printCorrectOptions(selectedOptions, setOptions);
       sendResponseEvent(selectedOptions);
-      sendResponseResult(selectedOptions);
+      sendResponseResult(selectedOptions, selectedSet);
     });
 
   }
 });
 
-function sendResponseResult(selection) {
+function sendResponseResult(selection, set) {
 
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'http://localhost:8888/result');
@@ -54,11 +54,8 @@ function sendResponseResult(selection) {
 
   const result = {
     time: new Date().getTime(),
-    set: {
-      id: exercise_set_id,
-      name: exercise_set_name,
-      access: exercise_set_access,
-    }
+    set: set.id,
+    selection: selection,
   };
 
   xhr.send(JSON.stringify(result));
@@ -88,7 +85,7 @@ function printCorrectOptions(selection, setOptions) {
 
   selection.forEach(selectedOption => {
     const option = setOptions.find(option => option.id === selectedOption);
-    if (option && option.correct) {
+    if (option?.correct) {
       correctCount++;
     } else {
       incorrectCount++;
@@ -170,11 +167,7 @@ function populateExerciseContainer(exercises) {
 
 function filterOptionsByExerciseSet(fullOptions, targetExerciseSetId) {
   return fullOptions.filter(option => {
-    return (
-      option.exercise_id &&
-        option.exercise_id.set_id &&
-        option.exercise_id.set_id.id === targetExerciseSetId
-    );
+    return (option.exercise_id?.set_id?.id === targetExerciseSetId);
   });
 }
 
@@ -182,7 +175,7 @@ function extractExerciseSets(data) {
   const uniqueExerciseSets = new Set();
 
   data.forEach(option => {
-    if (option.exercise_id && option.exercise_id.set_id) {
+    if (option.exercise_id?.set_id) {
       const setId = option.exercise_id.set_id.id;
       const setName = option.exercise_id.set_id.name;
 
