@@ -59,7 +59,6 @@ function sendResponseResult(selection, set) {
   };
 
   xhr.send(JSON.stringify(result));
-  console.dir(result);
 }
 
 function sendResponseEvent(selection) {
@@ -75,7 +74,6 @@ function sendResponseEvent(selection) {
   };
 
   xhr.send(JSON.stringify(event));
-  console.dir(event);
 }
 
 function printCorrectOptions(selection, setOptions) {
@@ -92,7 +90,6 @@ function printCorrectOptions(selection, setOptions) {
     }
   });
 
-  console.log(`Correctly Checked: ${correctCount} Incorrectly Checked: ${incorrectCount}`);
 }
 
 function assembleExerciseOptions(options) {

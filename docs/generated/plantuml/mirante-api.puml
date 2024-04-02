@@ -131,26 +131,7 @@ class mirante.api.security.AuthenticationController {
 	{method} ~authHealth () : void
 	{method} ~getToken ( request : mirante.api.account.AccountDTO ) : String
 	{method} ~newAccount ( request : mirante.api.account.AccountDTO ) : mirante.api.account.Account
-	{method} ~token () : void
-}
-
-
-class mirante.api.security.AuthenticationTest {
-	{field} ~authenticatedClient : org.springframework.test.web.reactive.server.WebTestClient
-	{field} ~invalidAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
-	{field} ~noAuthenticationClient : org.springframework.test.web.reactive.server.WebTestClient
-	{field} -port : String
-	{method} ~authEndpointReturnsOkWithAuthentication () : void
-	{method} ~authEndpointReturnsOkWithInvalidAuthentication () : void
-	{method} ~authEndpointReturnsOkWithoutAuthentication () : void
-	{method} ~buildClients () : void
-	{method} ~exerciseEndpointReturnsForbiddenIfUnauthenticated () : void
-	{method} ~tokenEndpointReturnsOkWithAuthentication () : void
-	{method} ~tokenEndpointReturnsOkWithInvalidAuthentication () : void
-	{method} ~tokenEndpointReturnsOkWithoutAuthentication () : void
-	{method} ~versionEndpointReturnsCurrentVersionWithAuthentication () : void
-	{method} ~versionEndpointReturnsCurrentVersionWithInvalidAuthentication () : void
-	{method} ~versionEndpointReturnsCurrentVersionWithoutAuthentication () : void
+	{method} ~tokenHealth () : void
 }
 
 

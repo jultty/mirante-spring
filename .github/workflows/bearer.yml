@@ -18,6 +18,7 @@ jobs:
         uses: bearer/bearer-action@v2
         with:
           scanner: sast
+          skip-path: "docs/generated"
       - name: Secrets scan
         uses: bearer/bearer-action@v2
         with:

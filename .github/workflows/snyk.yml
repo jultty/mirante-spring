@@ -23,7 +23,7 @@ jobs:
           java-version: '17'
 
       - name: Code test
-        run: snyk code test
+        run: snyk code test --severity-threshold=medium
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 

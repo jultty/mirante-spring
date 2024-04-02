@@ -16,7 +16,6 @@ class OptionController {
     this.repository = repository;
   }
 
-  @CrossOrigin(origins = "*")
   @GetMapping("/option")
   List<OptionDTO> all() {
     List<Option> options = repository.findAll();
