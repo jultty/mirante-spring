@@ -38,7 +38,6 @@ exerciseSetDropdown.addEventListener('input', () => {
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
 
-      printCorrectOptions(selectedOptions, setOptions);
       sendResponseEvent(selectedOptions);
       sendResponseResult(selectedOptions, selectedSet);
     });
@@ -76,28 +75,12 @@ function sendResponseEvent(selection) {
   xhr.send(JSON.stringify(event));
 }
 
-function printCorrectOptions(selection, setOptions) {
-
-  let correctCount = 0;
-  let incorrectCount = 0;
-
-  selection.forEach(selectedOption => {
-    const option = setOptions.find(option => option.id === selectedOption);
-    if (option?.correct) {
-      correctCount++;
-    } else {
-      incorrectCount++;
-    }
-  });
-
-}
-
-function assembleExerciseOptions(options) {
+function assembleExerciseOptions(selectedOptions) {
   const exerciseOptionsMap = {};
 
-  options.forEach(option => {
-    const exerciseId = option.exercise_id.id;
-    const exerciseInstruction = option.exercise_id.instruction;
+  selectedOptions.forEach(opt => {
+    const exerciseId = opt.exercise_id.id;
+    const exerciseInstruction = opt.exercise_id.instruction;
 
     if (!exerciseOptionsMap[exerciseId]) {
       exerciseOptionsMap[exerciseId] = {
