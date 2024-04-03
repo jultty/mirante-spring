@@ -1,7 +1,7 @@
 const exerciseContainer = document.getElementById('exerciseContainer');
 const exerciseSetDropdown = document.getElementById('exerciseSet');
-var uniqueSets;
-var options;
+let uniqueSets = {};
+let options = {};
 
 // get the exercise sets from the backend
 fetch('http://localhost:8888/option')
@@ -19,7 +19,7 @@ fetch('http://localhost:8888/option')
   })
 
 // listen for a selection of an exercise set
-exerciseSetDropdown.addEventListener('input', function () {
+exerciseSetDropdown.addEventListener('input', () => {
   const selectedSetId = exerciseSetDropdown.value;
   const selectedSet = uniqueSets.find(set => set.id === selectedSetId);
 
@@ -28,7 +28,7 @@ exerciseSetDropdown.addEventListener('input', function () {
     const exercises = assembleExerciseOptions(setOptions)
     populateExerciseContainer(exercises);
 
-    exerciseContainer.addEventListener('submit', function (event) {
+    exerciseContainer.addEventListener('submit', event => {
       event.preventDefault();
 
       const form = document.querySelector('form');
@@ -55,7 +55,7 @@ function sendResponseResult(selection, set) {
   const result = {
     time: new Date().getTime(),
     set: set.id,
-    selection: selection,
+    selection,
   };
 
   xhr.send(JSON.stringify(result));
