@@ -46,3 +46,23 @@ Na última semana do mês, a configuração de segurança [foi consolidada](http
 - O endpoint de criação de contas `/account` e endpoint de autenticação `/token` foi [movido](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-93bc02e314f5e394053842ea3f6b2095c896f65fa575abf2bfbc1fa48b73722b) da classe `AccountController`, pertencente ao pacote `mirante.api.account` para a classe `AuthenticationController`, do pacote `mirante.api.security`.
 - A configuração de segurança [foi atualizada](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-165cdea4c467c61ee81e8580807a1e95c7958cfdd8a5eada9c194d9c0dbc5596) para que estes novos endpoints também fossem públicos. Ficaram como públicos os endpoints `version`, `auth`, e qualquer endpoint cuja URL seja derivada de `auth`, por exemplo, `auth/health`, utilizado para verificar o status do serviço de autenticação e para os [testes](https://github.com/jultty/mirante/commit/cbeac1cea9c18cdc11cf355f5fd93d7c72e5cfaf#diff-f18fb4239bba98cb1510c4bbcfcc0b0297d8b99bfe0c498eddefeab2a6d0d5a9) implementados.
 - A versão do Spring Boot utilizada foi atualizada da `3.2.3` para o patch `3.2.4`, e do Spring Security da versão `6.2.1` para o patch `6.2.3`.
+
+Em 03/04, os primeiros testes começaram a ser escritos para o processo de criação de contas no novo endpoint configurado, `/auth`.
+
+Apesar da configuração descrita anteriormente, onde este endpoint, juntamente com `/version`, era público apesar da configuração padrão tornar todos os demais privados, ao realizar solicitações HTTP do tipo `POST` foi verificado retorno do erro `403` (Não autorizado).
+
+A princípio, foi iniciada investigação quanto à possibilidade do erro ter origem nas políticas padrão de mitigação de vulnerabilidades de CSRF e CORS.
+
+Considerando que o método de autenticação escolhido, por tokens temporários, já requer a troca de uma chave única que expira rapidamente, a proteção padrão para CORS foi desativada.
+
+Para a atualização do front-end, será necessário levar em conta estas proteções. As seguintes seções de documentação que apareceram ao estudar este problema podem vir a ser úteis nesta etapa:
+- [Cross Site Request Forgery (CSRF) :: Spring Security - Integrating with CSRF Protection](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html#csrf-integration)
+- [Cross Site Request Forgery (CSRF) :: Spring Security](https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html#csrf-integration-form)
+
+Em seguida foi apresentado novo erro, neste caso pelo curso ao qual a conta estava vinculada ainda não existir.
+
+Em um primeiro momento, foi configurado um script SQL específico para a configuração de teste, que criava o curso referido na inicialização do banco de dados.
+
+Após esta configuração, o teste passou. Contudo, é importante que seja possível criar uma conta desassociada a um curso para que esta conta seja capaz de criar os cursos que irá gerenciar.
+
+Para tanto, o atributo `course` foi removido. Futuramente, a agregação de quais estudantes pertencem a um dado curso será responsabilidade exclusiva da classe `Course`.

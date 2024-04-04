@@ -19,34 +19,36 @@ import org.springframework.security.web.SecurityFilterChain;
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-<span class="fc" id="L22">    http.authorizeHttpRequests(authorize -&gt; authorize</span>
-<span class="fc" id="L23">        .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;).permitAll()</span>
-<span class="fc" id="L24">        .anyRequest().authenticated()</span>
+<span class="fc" id="L22">    http</span>
+<span class="fc" id="L23">      .csrf(csrf -&gt; csrf.ignoringRequestMatchers(&quot;/auth/**&quot;))</span>
+<span class="fc" id="L24">      .authorizeHttpRequests(authorize -&gt; authorize</span>
+<span class="fc" id="L25">      .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;).permitAll()</span>
+<span class="fc" id="L26">      .anyRequest().authenticated()</span>
     );
 
-<span class="fc" id="L27">    return http.build();</span>
+<span class="fc" id="L29">    return http.build();</span>
   }
 
   @Bean
   public AuthenticationManager authenticationManager(
        UserDetailsService userDetailsService,
       PasswordEncoder passwordEncoder) {
-<span class="fc" id="L34">    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();</span>
-<span class="fc" id="L35">    authenticationProvider.setUserDetailsService(userDetailsService);</span>
-<span class="fc" id="L36">    authenticationProvider.setPasswordEncoder(passwordEncoder);</span>
+<span class="fc" id="L36">    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();</span>
+<span class="fc" id="L37">    authenticationProvider.setUserDetailsService(userDetailsService);</span>
+<span class="fc" id="L38">    authenticationProvider.setPasswordEncoder(passwordEncoder);</span>
 
-<span class="fc" id="L38">    return new ProviderManager(authenticationProvider);</span>
+<span class="fc" id="L40">    return new ProviderManager(authenticationProvider);</span>
   }
 
   @Bean
   public UserDetailsService userDetailsService() {
-<span class="fc" id="L43">    return new InMemoryUserDetailsManager();</span>
+<span class="fc" id="L45">    return new InMemoryUserDetailsManager();</span>
   }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-<span class="fc" id="L48">    return SecUtils.encoder;</span>
+<span class="fc" id="L50">    return SecUtils.encoder;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

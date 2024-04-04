@@ -6,15 +6,11 @@ import mirante.api.account.AccountRepository;
 import mirante.api.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 public class AuthenticationController {
 
   @Autowired
@@ -22,45 +18,44 @@ public class AuthenticationController {
 
   private final AccountRepository repository;
 
-<span class="fc" id="L25">  AuthenticationController(AccountRepository repository) {</span>
-<span class="fc" id="L26">    this.repository = repository;</span>
-<span class="fc" id="L27">  }</span>
+<span class="fc" id="L21">  AuthenticationController(AccountRepository repository) {</span>
+<span class="fc" id="L22">    this.repository = repository;</span>
+<span class="fc" id="L23">  }</span>
 
   @GetMapping(&quot;/auth/token&quot;)
   @ResponseStatus(HttpStatus.OK)
   String getToken(@RequestBody AccountDTO request) {
 
-<span class="nc" id="L33">    Optional&lt;String&gt; token =</span>
-<span class="nc" id="L34">        accountService.login(request.registration, request.password);</span>
+<span class="nc" id="L29">    Optional&lt;String&gt; token =</span>
+<span class="nc" id="L30">        accountService.login(request.registration, request.password);</span>
 
-<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (token.isPresent()) {</span>
-<span class="nc" id="L37">      return &quot;{\&quot;token\&quot;:\&quot;&quot; + token.orElseThrow() + &quot;\&quot;}&quot;;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">    if (token.isPresent()) {</span>
+<span class="nc" id="L33">      return &quot;{\&quot;token\&quot;:\&quot;&quot; + token.orElseThrow() + &quot;\&quot;}&quot;;</span>
     } else
-<span class="nc" id="L39">      return &quot;Failed to generate token&quot;;</span>
+<span class="nc" id="L35">      return &quot;Failed to generate token&quot;;</span>
   }
 
   @GetMapping(&quot;/auth&quot;)
   @ResponseStatus(HttpStatus.OK)
-<span class="fc" id="L44">  void authHealth() {}</span>
+<span class="fc" id="L40">  void authHealth() {}</span>
 
   @GetMapping(&quot;/auth/token/health&quot;)
   @ResponseStatus(HttpStatus.OK)
-<span class="fc" id="L48">  void token() {}</span>
+<span class="fc" id="L44">  void tokenHealth() {}</span>
 
   @PostMapping(&quot;/auth&quot;)
   @ResponseStatus(HttpStatus.CREATED)
   Account newAccount(@RequestBody AccountDTO request) {
 
-<span class="nc" id="L54">    Account newAccount = new Account(</span>
+<span class="fc" id="L50">    Account newAccount = new Account(</span>
         request.registration,
         request.name,
         request.email,
-        request.password,
-        request.course
+        request.password
     );
 
-<span class="nc" id="L62">    return repository.save(newAccount);</span>
+<span class="fc" id="L57">    System.out.println(newAccount);</span>
+<span class="fc" id="L58">    return repository.save(newAccount);</span>
   }
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

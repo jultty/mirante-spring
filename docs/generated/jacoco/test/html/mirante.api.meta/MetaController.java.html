@@ -2,7 +2,7 @@
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 <span class="fc" id="L16">  MetaData metadata = new MetaData();</span>
 
-  @RequestMapping(&quot;/version&quot;)
+  @GetMapping(&quot;/version&quot;)
   @ResponseBody
   public MetaData version() {
 <span class="fc" id="L21">    return this.metadata;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

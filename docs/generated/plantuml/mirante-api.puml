@@ -150,8 +150,6 @@ class mirante.api.security.SecurityConfiguration {
 
 
 
-mirante.api.account.Account -->  mirante.api.course.Course :  @ManyToOne\ncourse
-mirante.api.account.AccountDTO -->  mirante.api.course.Course : course
 mirante.api.account.AccountService -->  mirante.api.account.AccountRepository : accountRepository
 mirante.api.exercise.Exercise "1" o-- "0..*"  mirante.api.exercise.option.Option : options
 mirante.api.exercise.Exercise -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset

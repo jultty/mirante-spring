@@ -16,41 +16,40 @@ class OptionController {
 <span class="fc" id="L16">    this.repository = repository;</span>
 <span class="fc" id="L17">  }</span>
 
-  @CrossOrigin(origins = &quot;*&quot;)
   @GetMapping(&quot;/option&quot;)
   List&lt;OptionDTO&gt; all() {
-<span class="nc" id="L22">    List&lt;Option&gt; options = repository.findAll();</span>
-<span class="nc" id="L23">    List&lt;OptionDTO&gt; optionDTOs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L21">    List&lt;Option&gt; options = repository.findAll();</span>
+<span class="nc" id="L22">    List&lt;OptionDTO&gt; optionDTOs = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L25">    options.forEach(e -&gt; {</span>
-<span class="nc" id="L26">      OptionDTO dto = new OptionDTO();</span>
-<span class="nc" id="L27">      dto.place = e.getPlace();</span>
-<span class="nc" id="L28">      dto.content = e.getContent();</span>
-<span class="nc" id="L29">      dto.correct = e.getCorrect();</span>
-<span class="nc" id="L30">      dto.exercise = e.getExerciseId();</span>
-<span class="nc" id="L31">      optionDTOs.add(dto);</span>
-<span class="nc" id="L32">    });</span>
+<span class="nc" id="L24">    options.forEach(e -&gt; {</span>
+<span class="nc" id="L25">      OptionDTO dto = new OptionDTO();</span>
+<span class="nc" id="L26">      dto.place = e.getPlace();</span>
+<span class="nc" id="L27">      dto.content = e.getContent();</span>
+<span class="nc" id="L28">      dto.correct = e.getCorrect();</span>
+<span class="nc" id="L29">      dto.exercise = e.getExerciseId();</span>
+<span class="nc" id="L30">      optionDTOs.add(dto);</span>
+<span class="nc" id="L31">    });</span>
 
-<span class="nc" id="L34">    return optionDTOs;</span>
+<span class="nc" id="L33">    return optionDTOs;</span>
   }
 
   @PostMapping(&quot;/option&quot;)
   @ResponseStatus(HttpStatus.CREATED)
   Option newOption(@RequestBody Option newOption) {
-<span class="nc" id="L40">    return repository.save(newOption);</span>
+<span class="nc" id="L39">    return repository.save(newOption);</span>
   }
 
   @GetMapping(&quot;/option/{id}&quot;)
   Option one(@PathVariable String id) {
-<span class="nc" id="L45">    return repository.findById(id)</span>
-<span class="nc" id="L46">      .orElseThrow(() -&gt; new ResponseStatusException(</span>
+<span class="nc" id="L44">    return repository.findById(id)</span>
+<span class="nc" id="L45">      .orElseThrow(() -&gt; new ResponseStatusException(</span>
         HttpStatus.NOT_FOUND, &quot;Option with id ${id} not found&quot;)
       );
   }
 
   @DeleteMapping(&quot;/option/{id}&quot;)
   void deleteOption(@PathVariable String id) {
-<span class="nc" id="L53">    repository.deleteById(id);</span>
-<span class="nc" id="L54">  }</span>
+<span class="nc" id="L52">    repository.deleteById(id);</span>
+<span class="nc" id="L53">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
