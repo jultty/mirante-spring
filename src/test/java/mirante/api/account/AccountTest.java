@@ -1,10 +1,10 @@
 package mirante.api.account;
 
 import mirante.api.course.Course;
-
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AccountTest {
 
@@ -14,14 +14,14 @@ class AccountTest {
 	void encodedPasswordCanBeDecoded() {
     String password = "xyz0000";
     Account account =
-      new Account("JC000000", "Jane Doe", "jane@doe.com", password, course);
+      new Account("JC000000", "Jane Doe", "jane@doe.com", password);
     assertTrue(account.checkPassword(password));
 	}
 
   @Test
 	void wrongPasswordCheckReturnsFalse() {
     Account account =
-      new Account("JC000000", "Jane Doe", "jane@doe.com", "xyz0000", course);
+      new Account("JC000000", "Jane Doe", "jane@doe.com", "xyz0000");
     assertFalse(account.checkPassword("xyz0001"));
 	}
 }
