@@ -67,4 +67,6 @@ Após esta configuração, o teste passou. Contudo, é importante que seja poss�
 
 Para tanto, o atributo `course` foi removido. Futuramente, a agregação de quais estudantes pertencem a um dado curso será responsabilidade exclusiva da classe `Course`.
 
-No dia 8 de abril foi implantada uma estrutura para a escrita do manual de uso, parte da documentação do sistema que deve servir como referência mais progressiva e didática. Foi utilizada a ferramenta Asciidoctor e o Spring REST Docs, um projeto associado ao Spring que gera documentação a partir de testes automatizados, validando a veracidade dos trechos de código que estão sendo associados a cada explicação.
+No dia 8 de abril foi implantada uma estrutura para a escrita do [manual de uso](https://jultty.github.io/mirante/generated/asciidoc/index.html), parte da documentação do sistema que deve servir como referência mais progressiva e didática. Foi utilizada a ferramenta Asciidoctor e o Spring REST Docs, um projeto associado ao Spring que gera documentação a partir de testes automatizados, validando a veracidade dos trechos de código que estão sendo associados a cada explicação.
+
+Ainda no dia 8, foi adicionada uma [referência dos endpoints](https://app.swaggerhub.com/apis-docs/jutty/mirante/v0.3.0) com base na biblioteca Swagger, que gera uma especificação através do padrão OpenAPI 3.0 em JSON e YAML. A referência está disponível online e também em dois endpoints da própria aplicação, `/api-docs` (esquema em JSON) e `/api-docs/ui` (interface web).

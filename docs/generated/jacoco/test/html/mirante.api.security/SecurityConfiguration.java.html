@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 <span class="fc" id="L22">    http</span>
 <span class="fc" id="L23">      .csrf(csrf -&gt; csrf.ignoringRequestMatchers(&quot;/auth/**&quot;))</span>
 <span class="fc" id="L24">      .authorizeHttpRequests(authorize -&gt; authorize</span>
-<span class="fc" id="L25">      .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;).permitAll()</span>
+<span class="fc" id="L25">      .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;, &quot;/api-docs/**&quot;).permitAll()</span>
 <span class="fc" id="L26">      .anyRequest().authenticated()</span>
     );
 

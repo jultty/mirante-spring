@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.097s</div>
+<div class="counter">0.976s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">1.097s</td>
+<td class="success">0.976s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +87,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>01:30:39.304 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [mirante.api.SanityTest]: SanityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-01:30:39.620 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration mirante.api.Mirante for test class mirante.api.SanityTest
+<pre>02:52:45.818 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [mirante.api.SanityTest]: SanityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:52:46.050 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration mirante.api.Mirante for test class mirante.api.SanityTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -98,24 +98,24 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.4)
 
-2024-04-08T01:30:40.647-03:00  INFO 1286794 --- [    Test worker] mirante.api.SanityTest                   : Starting SanityTest using Java 17.0.7 with PID 1286794 (started by juno in /home/juno/git/hub/mirante)
-2024-04-08T01:30:40.652-03:00  INFO 1286794 --- [    Test worker] mirante.api.SanityTest                   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-04-08T01:30:42.485-03:00  INFO 1286794 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-08T01:30:42.867-03:00  INFO 1286794 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 365 ms. Found 7 JPA repository interfaces.
-2024-04-08T01:30:44.274-03:00  INFO 1286794 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-04-08T01:30:45.384-03:00  INFO 1286794 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:mirante user=DEV
-2024-04-08T01:30:45.388-03:00  INFO 1286794 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-04-08T01:30:45.570-03:00  INFO 1286794 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-08T01:30:45.813-03:00  INFO 1286794 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-04-08T01:30:46.039-03:00  INFO 1286794 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-04-08T01:30:47.288-03:00  INFO 1286794 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-04-08T01:30:50.850-03:00  INFO 1286794 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-04-08T01:30:51.052-03:00  INFO 1286794 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-08T01:30:51.799-03:00  INFO 1286794 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-04-08T01:30:53.314-03:00  WARN 1286794 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-08T01:30:54.557-03:00  INFO 1286794 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@32cdb22f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53d43bcd, org.springframework.security.web.context.SecurityContextHolderFilter@4f6b2741, org.springframework.security.web.header.HeaderWriterFilter@38100597, org.springframework.web.filter.CorsFilter@4b7ce208, org.springframework.security.web.csrf.CsrfFilter@2fdbd1eb, org.springframework.security.web.authentication.logout.LogoutFilter@7bb3c0a3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21521518, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@318d5c46, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@566e5161, org.springframework.security.web.access.ExceptionTranslationFilter@56c5d5, org.springframework.security.web.access.intercept.AuthorizationFilter@514617cc]
-2024-04-08T01:30:55.518-03:00  INFO 1286794 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mirante'
-2024-04-08T01:30:55.750-03:00  INFO 1286794 --- [    Test worker] mirante.api.SanityTest                   : Started SanityTest in 15.79 seconds (process running for 26.656)
+2024-04-08T02:52:47.133-03:00  INFO 2688632 --- [    Test worker] mirante.api.SanityTest                   : Starting SanityTest using Java 17.0.7 with PID 2688632 (started by juno in /home/juno/git/hub/mirante)
+2024-04-08T02:52:47.139-03:00  INFO 2688632 --- [    Test worker] mirante.api.SanityTest                   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-04-08T02:52:49.148-03:00  INFO 2688632 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-04-08T02:52:49.421-03:00  INFO 2688632 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 258 ms. Found 7 JPA repository interfaces.
+2024-04-08T02:52:50.764-03:00  INFO 2688632 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-08T02:52:51.782-03:00  INFO 2688632 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:mirante user=DEV
+2024-04-08T02:52:51.785-03:00  INFO 2688632 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-08T02:52:51.909-03:00  INFO 2688632 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-04-08T02:52:52.047-03:00  INFO 2688632 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-04-08T02:52:52.120-03:00  INFO 2688632 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-04-08T02:52:52.748-03:00  INFO 2688632 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-04-08T02:52:55.358-03:00  INFO 2688632 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-04-08T02:52:55.481-03:00  INFO 2688632 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-04-08T02:52:56.004-03:00  INFO 2688632 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-04-08T02:52:57.775-03:00  WARN 2688632 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-04-08T02:52:58.962-03:00  INFO 2688632 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3ed90cfc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54345067, org.springframework.security.web.context.SecurityContextHolderFilter@7ade0d77, org.springframework.security.web.header.HeaderWriterFilter@219bdfb9, org.springframework.web.filter.CorsFilter@34db71a9, org.springframework.security.web.csrf.CsrfFilter@76e179ec, org.springframework.security.web.authentication.logout.LogoutFilter@1d13b09b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d3b0d3c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a50a7e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d9ce295, org.springframework.security.web.access.ExceptionTranslationFilter@36a885b4, org.springframework.security.web.access.intercept.AuthorizationFilter@77e3ac8c]
+2024-04-08T02:52:59.925-03:00  INFO 2688632 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mirante'
+2024-04-08T02:53:00.235-03:00  INFO 2688632 --- [    Test worker] mirante.api.SanityTest                   : Started SanityTest in 13.797 seconds (process running for 22.848)
 </pre>
 </span>
 </div>
@@ -127,7 +127,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.6</a> at Apr 8, 2024, 1:31:04 AM</p>
+<a href="http://www.gradle.org">Gradle 8.6</a> at Apr 8, 2024, 2:53:11 AM</p>
 </div>
 </div>
 </body>
