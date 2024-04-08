@@ -135,6 +135,14 @@ class mirante.api.security.AuthenticationController {
 }
 
 
+class mirante.api.security.AuthenticationDocTest {
+	{field} -client : org.springframework.test.web.reactive.server.WebTestClient
+	{field} -port : String
+	{method} ~setUp ( applicationContext : org.springframework.web.context.WebApplicationContext , restDocumentation : org.springframework.restdocs.RestDocumentationContextProvider ) : void
+	{method} ~versionEndpointReturnsOK () : void
+}
+
+
 class mirante.api.security.SecUtils {
 	{field} {static} +encoder : org.springframework.security.crypto.argon2.Argon2PasswordEncoder
 }

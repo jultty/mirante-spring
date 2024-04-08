@@ -66,3 +66,5 @@ Em um primeiro momento, foi configurado um script SQL específico para a configu
 Após esta configuração, o teste passou. Contudo, é importante que seja possível criar uma conta desassociada a um curso para que esta conta seja capaz de criar os cursos que irá gerenciar.
 
 Para tanto, o atributo `course` foi removido. Futuramente, a agregação de quais estudantes pertencem a um dado curso será responsabilidade exclusiva da classe `Course`.
+
+No dia 8 de abril foi implantada uma estrutura para a escrita do manual de uso, parte da documentação do sistema que deve servir como referência mais progressiva e didática. Foi utilizada a ferramenta Asciidoctor e o Spring REST Docs, um projeto associado ao Spring que gera documentação a partir de testes automatizados, validando a veracidade dos trechos de código que estão sendo associados a cada explicação.
