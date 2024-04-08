@@ -1,0 +1,7 @@
+Mirante is a data collection and analysis tool meant to be used in the classroom.
+
+The simplest request you can make to the API is a `GET` request to the `/version` endpoint:
+
+include::{snippets}/version/curl-request.adoc[]
+
+This should return the current version the server is running.

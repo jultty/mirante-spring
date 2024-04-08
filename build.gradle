@@ -2,6 +2,7 @@ plugins {
   id 'java'
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
     id 'com.github.andygoossens.modernizer' version '1.9.0'
     id 'com.github.spotbugs' version '6.0.8'
     id 'jacoco'
@@ -11,10 +12,7 @@ group = 'mirante.api'
 version = '0.3.0-SNAPSHOT'
 def spring_version = '6.1.5'
 def spring_security_version = '6.2.3'
-
-configurations {
-  umlDoclet
-}
+def spring_docs_version = '3.0.1'
 
 java {
   sourceCompatibility = JavaVersion.VERSION_17
@@ -24,15 +22,9 @@ repositories {
   mavenCentral()
 }
 
-tasks.register('copyDocs', Copy) {
-    dependsOn jacocoTestReport, javadoc
-    from layout.buildDirectory.dir("reports")
-    from layout.buildDirectory.dir("docs")
-    into layout.projectDirectory.dir("docs/generated")
-}
-
-task fullBuild(type: GradleBuild) {
-  tasks = [ 'jacocoTestCoverageVerification', 'jacocoTestReport', 'build', 'javadoc', 'copyDocs' ]
+configurations {
+  umlDoclet
+  asciidoctorExt
 }
 
 dependencies {
@@ -48,20 +40,40 @@ dependencies {
   testImplementation 'org.springframework.boot:spring-boot-starter-web'
   testImplementation 'org.springframework.boot:spring-boot-starter-security'
   testImplementation 'org.springframework.security:spring-security-test'
+  testImplementation "org.springframework.restdocs:spring-restdocs-webtestclient:${spring_docs_version}"
   testImplementation 'de.elnarion.util:plantuml-generator-util:2.4.1'
   testImplementation group: 'com.credibledoc', name: 'plantuml-core', version: '1.0.51'
   runtimeOnly 'com.h2database:h2'
   umlDoclet "nl.talsmasoftware:umldoclet:2.1.1"
+  asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor:${spring_docs_version}"
 }
 
-tasks.named('test') {
+tasks.register('copyDocs', Copy) {
+  dependsOn jacocoTestReport, javadoc, asciidoctor
+  from layout.buildDirectory.dir("reports")
+  from layout.buildDirectory.dir("docs")
+  from layout.buildDirectory.dir("generated-snippets")
+  from layout.buildDirectory.dir("asciidoc")
+  into layout.projectDirectory.dir("docs/generated")
+}
+
+def snippetsDir = file('build/generated-snippets')
+
+test {
+  outputs.dir snippetsDir
   useJUnitPlatform()
 }
 
 javadoc {
   source = sourceSets.main.allJava
-    options.docletpath = configurations.umlDoclet.files as List
-    options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
+  options.docletpath = configurations.umlDoclet.files as List
+  options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
+}
+
+asciidoctor {
+  inputs.dir snippetsDir
+  configurations 'asciidoctorExt'
+  dependsOn test
 }
 
 modernizer {
@@ -88,3 +100,15 @@ jacocoTestCoverageVerification {
     }
   }
 }
+
+tasks.register('fullBuild', GradleBuild) {
+  tasks = [
+          'jacocoTestCoverageVerification',
+          'jacocoTestReport',
+          'build',
+          'javadoc',
+          'asciidoctor',
+          'copyDocs'
+  ]
+}
+
