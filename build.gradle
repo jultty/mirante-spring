@@ -36,6 +36,7 @@ dependencies {
   implementation "org.springframework.security:spring-security-crypto:${spring_security_version}"
   implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
   implementation 'commons-io:commons-io:2.15.1'
+  implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework.boot:spring-boot-starter-web'
   testImplementation 'org.springframework.boot:spring-boot-starter-security'

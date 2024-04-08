@@ -22,7 +22,7 @@ public class SecurityConfiguration {
     http
       .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**"))
       .authorizeHttpRequests(authorize -> authorize
-      .requestMatchers("/version", "/auth/**").permitAll()
+      .requestMatchers("/version", "/auth/**", "/api-docs/**").permitAll()
       .anyRequest().authenticated()
     );
 
