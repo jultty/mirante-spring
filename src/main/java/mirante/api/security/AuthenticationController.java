@@ -1,10 +1,12 @@
 package mirante.api.security;
 
+import jakarta.persistence.EntityNotFoundException;
 import mirante.api.account.Account;
 import mirante.api.account.AccountDTO;
 import mirante.api.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,15 +25,21 @@ public class AuthenticationController {
 
   @PostMapping("/auth/token")
   @ResponseStatus(HttpStatus.CREATED)
-  String getToken(@RequestBody AccountDTO request) {
+  ResponseEntity<String> getToken(@RequestBody AccountDTO request) {
 
-    Optional<String> token =
-        accountDetailsService.login(request.registration, request.password);
+    Optional<String> token;
+
+    try {
+      token =
+          accountDetailsService.login(request.registration, request.password);
+    } catch (EntityNotFoundException exception) {
+      return new ResponseEntity<>( "{\"error\":\"No matching account found\"}", HttpStatus.BAD_REQUEST);
+    }
 
     if (token.isPresent()) {
-      return "{\"token\":\"" + token.orElseThrow() + "\"}";
+      return new ResponseEntity<>("{\"token\":\"" + token.orElseThrow() + "\"}", HttpStatus.CREATED);
     } else
-      return "{\"error\":\"Failed to generate token\"}";
+      return new ResponseEntity<>( "{\"error\":\"Failed to generate token\"}", HttpStatus.BAD_REQUEST);
   }
 
   @GetMapping("/auth")

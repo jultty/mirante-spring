@@ -94,9 +94,9 @@ class AccountCreationTest {
         .bodyValue(account)
         .accept(MediaType.APPLICATION_JSON)
         .exchange()
-        .expectStatus().is4xxClientError()
+        .expectStatus().isBadRequest()
         .expectBody()
-        .jsonPath("$.error").isEqualTo("Failed to generate token");
+        .jsonPath("$.error").isEqualTo("No matching account found");
 
   }
 }
