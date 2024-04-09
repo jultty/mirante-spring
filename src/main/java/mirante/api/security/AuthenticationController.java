@@ -3,7 +3,6 @@ package mirante.api.security;
 import mirante.api.account.Account;
 import mirante.api.account.AccountDTO;
 import mirante.api.account.AccountRepository;
-import mirante.api.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class AuthenticationController {
 
   @Autowired
-  private AccountService accountService;
+  private AccountDetailsService accountDetailsService;
 
   private final AccountRepository repository;
 
@@ -22,17 +21,17 @@ public class AuthenticationController {
     this.repository = repository;
   }
 
-  @GetMapping("/auth/token")
-  @ResponseStatus(HttpStatus.OK)
+  @PostMapping("/auth/token")
+  @ResponseStatus(HttpStatus.CREATED)
   String getToken(@RequestBody AccountDTO request) {
 
     Optional<String> token =
-        accountService.login(request.registration, request.password);
+        accountDetailsService.login(request.registration, request.password);
 
     if (token.isPresent()) {
       return "{\"token\":\"" + token.orElseThrow() + "\"}";
     } else
-      return "Failed to generate token";
+      return "{\"error\":\"Failed to generate token\"}";
   }
 
   @GetMapping("/auth")
@@ -54,7 +53,6 @@ public class AuthenticationController {
         request.password
     );
 
-    System.out.println(newAccount);
     return repository.save(newAccount);
   }
 }

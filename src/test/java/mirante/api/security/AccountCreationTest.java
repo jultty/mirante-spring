@@ -2,6 +2,7 @@ package mirante.api.security;
 
 import mirante.api.account.AccountDTO;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,9 +22,10 @@ class AccountCreationTest {
   WebTestClient unauthenticatedClient;
   WebTestClient authenticatedClient;
   WebTestClient invalidAuthenticationClient;
+  AccountDTO account;
 
   @BeforeAll
-  void buildClients() {
+  void setUp() {
     unauthenticatedClient = WebTestClient
         .bindToServer()
         .baseUrl("http://localhost:" + port)
@@ -32,33 +34,34 @@ class AccountCreationTest {
     authenticatedClient = WebTestClient
         .bindToServer()
         .baseUrl("http://localhost:" + port)
-        .filter(basicAuthentication("demo", "demo"))
+        .filter(basicAuthentication("jc222222", "xyz6060"))
         .build();
 
     invalidAuthenticationClient = WebTestClient
         .bindToServer()
         .baseUrl("http://localhost:" + port)
-        .filter(basicAuthentication("demo", "secret"))
+        .filter(basicAuthentication("jc222222", "xyz0000"))
         .build();
+
+      account = new AccountDTO(
+          "jc222222", "Tania Wolfgramm", "tania@mirante.dev", "xyz6060"
+      );
   }
 
-  @Test
+  @Test @Order(1)
   void accountEndpointReturnsForbiddenIfUnauthenticated() {
     unauthenticatedClient.get().uri("/account").exchange()
         .expectStatus().isForbidden();
   }
 
-  @Test
+  @Test @Order(2)
   void authEndpointReturnsOkOnGetIfUnauthenticated() {
     unauthenticatedClient.get().uri("/auth").exchange()
         .expectStatus().isOk();
   }
 
-  @Test
+  @Test @Order(3)
   void accountCreationCanHappenIfUnauthenticated() {
-    AccountDTO account = new AccountDTO(
-        "jc222222", "Tania Wolfgramm", "tania@mirante.dev", "xyz6060"
-    );
     unauthenticatedClient
         .post().uri("/auth")
         .contentType(MediaType.APPLICATION_JSON)
@@ -66,5 +69,34 @@ class AccountCreationTest {
         .accept(MediaType.APPLICATION_JSON)
         .exchange()
         .expectStatus().isCreated();
+  }
+
+  @Test @Order(4)
+  void createdAccountDetailsAllowObtainingAToken() {
+    unauthenticatedClient
+        .post().uri("/auth/token")
+        .contentType(MediaType.APPLICATION_JSON)
+        .bodyValue(account)
+        .accept(MediaType.APPLICATION_JSON)
+        .exchange()
+        .expectStatus().isCreated()
+        .expectBody().jsonPath("$.token").isNotEmpty();
+  }
+
+  @Test @Order(5)
+  void wrongPasswordForCreatedAccountDoesNotAllowObtainingAToken() {
+
+    account.password = "xyz0000";
+
+     invalidAuthenticationClient
+        .post().uri("/auth/token")
+        .contentType(MediaType.APPLICATION_JSON)
+        .bodyValue(account)
+        .accept(MediaType.APPLICATION_JSON)
+        .exchange()
+        .expectStatus().is4xxClientError()
+        .expectBody()
+        .jsonPath("$.error").isEqualTo("Failed to generate token");
+
   }
 }
