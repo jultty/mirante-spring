@@ -25,7 +25,7 @@ public class AuthenticationController {
 
   @PostMapping("/auth/token")
   @ResponseStatus(HttpStatus.CREATED)
-  ResponseEntity<String> getToken(@RequestBody AccountDTO request) {
+  ResponseEntity<String> getToken(@RequestBody AccountDetailsDTO request) {
 
     Optional<String> token;
 
@@ -33,13 +33,13 @@ public class AuthenticationController {
       token =
           accountDetailsService.login(request.registration, request.password);
     } catch (EntityNotFoundException exception) {
-      return new ResponseEntity<>( "{\"error\":\"No matching account found\"}", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>( "{\"error\":\"Failed to retrieve token\"}", HttpStatus.BAD_REQUEST);
     }
 
     if (token.isPresent()) {
       return new ResponseEntity<>("{\"token\":\"" + token.orElseThrow() + "\"}", HttpStatus.CREATED);
     } else
-      return new ResponseEntity<>( "{\"error\":\"Failed to generate token\"}", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>( "{\"error\":\"No matching account found\"}", HttpStatus.BAD_REQUEST);
   }
 
   @GetMapping("/auth")

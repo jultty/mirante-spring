@@ -1,10 +1,7 @@
 package mirante.api.security;
 
 import mirante.api.account.AccountDTO;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -12,8 +9,9 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.springframework.web.reactive.function.client.ExchangeFilterFunctions.basicAuthentication;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountCreationTest {
 
   @Value("${server.port:8889}")
@@ -23,6 +21,7 @@ class AccountCreationTest {
   WebTestClient authenticatedClient;
   WebTestClient invalidAuthenticationClient;
   AccountDTO account;
+  AccountDetailsDTO details;
 
   @BeforeAll
   void setUp() {
@@ -46,6 +45,8 @@ class AccountCreationTest {
       account = new AccountDTO(
           "jc222222", "Tania Wolfgramm", "tania@mirante.dev", "xyz6060"
       );
+
+      details = new AccountDetailsDTO(account.registration, account.password);
   }
 
   @Test @Order(1)
@@ -76,7 +77,7 @@ class AccountCreationTest {
     unauthenticatedClient
         .post().uri("/auth/token")
         .contentType(MediaType.APPLICATION_JSON)
-        .bodyValue(account)
+        .bodyValue(details)
         .accept(MediaType.APPLICATION_JSON)
         .exchange()
         .expectStatus().isCreated()
@@ -86,12 +87,12 @@ class AccountCreationTest {
   @Test @Order(5)
   void wrongPasswordForCreatedAccountDoesNotAllowObtainingAToken() {
 
-    account.password = "xyz0000";
+    details.password = "xyz0000";
 
      invalidAuthenticationClient
         .post().uri("/auth/token")
         .contentType(MediaType.APPLICATION_JSON)
-        .bodyValue(account)
+        .bodyValue(details)
         .accept(MediaType.APPLICATION_JSON)
         .exchange()
         .expectStatus().isBadRequest()
