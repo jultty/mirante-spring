@@ -31,10 +31,10 @@ public class SecurityConfiguration {
 
   @Bean
   public AuthenticationManager authenticationManager(
-       UserDetailsService userDetailsService,
+       AccountDetailsService accountDetailsService,
       PasswordEncoder passwordEncoder) {
     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setUserDetailsService(userDetailsService);
+    authenticationProvider.setUserDetailsService(accountDetailsService);
     authenticationProvider.setPasswordEncoder(passwordEncoder);
 
     return new ProviderManager(authenticationProvider);
