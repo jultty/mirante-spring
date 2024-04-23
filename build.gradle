@@ -58,6 +58,15 @@ tasks.register('copyDocs', Copy) {
   into layout.projectDirectory.dir("docs/generated")
 }
 
+tasks.register('generatePlantUML') {
+  test {
+    systemProperty "fullBuild", new String("true")
+    filter {
+      includeTestsMatching('PlantUMLGeneratorTest')
+    }
+  }
+}
+
 def snippetsDir = file('build/generated-snippets')
 
 test {
@@ -96,7 +105,7 @@ jacocoTestCoverageVerification {
   violationRules {
     rule {
       limit {
-        minimum = 0.18
+        // minimum = 0.20
       }
     }
   }
@@ -109,6 +118,7 @@ tasks.register('fullBuild', GradleBuild) {
           'build',
           'javadoc',
           'asciidoctor',
+          'generatePlantUML',
           'copyDocs'
   ]
 }

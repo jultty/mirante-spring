@@ -7,9 +7,11 @@ import de.elnarion.util.plantuml.generator.sequencediagram.PlantUMLSequenceDiagr
 import de.elnarion.util.plantuml.generator.sequencediagram.config.PlantUMLSequenceDiagramConfigBuilder;
 import de.elnarion.util.plantuml.generator.sequencediagram.exception.NotFoundException;
 import mirante.api.account.Account;
-import mirante.api.exercise.Exercise;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@EnabledIfSystemProperty(named = "fullBuild", matches = "true")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PlantUMLGeneratorTest {
 
   @Test @Order(1)
