@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-<span class="fc" id="L10">public class MetaController {</span>
+<span class="nc" id="L10">public class MetaController {</span>
 
-<span class="fc" id="L12">  public static final class MetaData {</span>
-<span class="fc" id="L13">    @JsonProperty(&quot;version&quot;) String version = &quot;v0.3.0&quot;;</span>
+<span class="nc" id="L12">  public static final class MetaData {</span>
+<span class="nc" id="L13">    @JsonProperty(&quot;version&quot;) String version = &quot;v0.3.0&quot;;</span>
   }
 
-<span class="fc" id="L16">  MetaData metadata = new MetaData();</span>
+<span class="nc" id="L16">  MetaData metadata = new MetaData();</span>
 
   @GetMapping(&quot;/version&quot;)
   @ResponseBody
   public MetaData version() {
-<span class="fc" id="L21">    return this.metadata;</span>
+<span class="nc" id="L21">    return this.metadata;</span>
   }
 
 }

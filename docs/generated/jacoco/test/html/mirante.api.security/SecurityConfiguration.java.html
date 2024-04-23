@@ -14,40 +14,40 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-<span class="fc" id="L17">public class SecurityConfiguration {</span>
+<span class="nc" id="L17">public class SecurityConfiguration {</span>
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-<span class="fc" id="L22">    http</span>
-<span class="fc" id="L23">      .csrf(csrf -&gt; csrf.ignoringRequestMatchers(&quot;/auth/**&quot;))</span>
-<span class="fc" id="L24">      .authorizeHttpRequests(authorize -&gt; authorize</span>
-<span class="fc" id="L25">      .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;, &quot;/api-docs/**&quot;).permitAll()</span>
-<span class="fc" id="L26">      .anyRequest().authenticated()</span>
+<span class="nc" id="L22">    http</span>
+<span class="nc" id="L23">      .csrf(csrf -&gt; csrf.ignoringRequestMatchers(&quot;/auth/**&quot;))</span>
+<span class="nc" id="L24">      .authorizeHttpRequests(authorize -&gt; authorize</span>
+<span class="nc" id="L25">      .requestMatchers(&quot;/version&quot;, &quot;/auth/**&quot;, &quot;/api-docs/**&quot;).permitAll()</span>
+<span class="nc" id="L26">      .anyRequest().authenticated()</span>
     );
 
-<span class="fc" id="L29">    return http.build();</span>
+<span class="nc" id="L29">    return http.build();</span>
   }
 
   @Bean
   public AuthenticationManager authenticationManager(
-       UserDetailsService userDetailsService,
+       AccountDetailsService accountDetailsService,
       PasswordEncoder passwordEncoder) {
-<span class="fc" id="L36">    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();</span>
-<span class="fc" id="L37">    authenticationProvider.setUserDetailsService(userDetailsService);</span>
-<span class="fc" id="L38">    authenticationProvider.setPasswordEncoder(passwordEncoder);</span>
+<span class="nc" id="L36">    DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();</span>
+<span class="nc" id="L37">    authenticationProvider.setUserDetailsService(accountDetailsService);</span>
+<span class="nc" id="L38">    authenticationProvider.setPasswordEncoder(passwordEncoder);</span>
 
-<span class="fc" id="L40">    return new ProviderManager(authenticationProvider);</span>
+<span class="nc" id="L40">    return new ProviderManager(authenticationProvider);</span>
   }
 
   @Bean
   public UserDetailsService userDetailsService() {
-<span class="fc" id="L45">    return new InMemoryUserDetailsManager();</span>
+<span class="nc" id="L45">    return new InMemoryUserDetailsManager();</span>
   }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-<span class="fc" id="L50">    return SecUtils.encoder;</span>
+<span class="nc" id="L50">    return SecUtils.encoder;</span>
   }
 
 }

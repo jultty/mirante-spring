@@ -7,12 +7,13 @@ class mirante.api.Mirante {
 
 class mirante.api.account.Account {
 	{field} +email : String
+	{field} +expired : Boolean
+	{field} +locked : Boolean
 	{field} +name : String
-	{field} -password : String
+	{field} +password : String
 	{field} +registration : String
 	{field} +token : String
-	{field} -verified : Boolean
-	{method} +changePassword ( old_password : String , new_password : String ) : void
+	{field} +verified : Boolean
 	{method} +checkPassword ( password : String ) : Boolean
 }
 
@@ -26,14 +27,9 @@ class mirante.api.account.AccountDTO {
 
 
 interface mirante.api.account.AccountRepository {
+	{method}  {abstract} +findByRegistration ( registration : String ) : mirante.api.account.Account
 	{method}  {abstract} +findByToken ( token : String ) : mirante.api.account.Account
 	{method}  {abstract} +login ( registration : String , password : String ) : mirante.api.account.Account
-}
-
-
-class mirante.api.account.AccountService {
-	{method} +findByToken ( token : String ) : java.util.Optional
-	{method} +login ( registration : String , password : String ) : java.util.Optional
 }
 
 
@@ -127,9 +123,33 @@ class mirante.api.result.Result {
 }
 
 
+class mirante.api.security.AccountDetails {
+	{method} +getAuthorities () : java.util.Collection
+	{method} +getPassword () : String
+	{method} +getUsername () : String
+	{method} +isAccountNonExpired () : boolean
+	{method} +isAccountNonLocked () : boolean
+	{method} +isCredentialsNonExpired () : boolean
+	{method} +isEnabled () : boolean
+}
+
+
+class mirante.api.security.AccountDetailsDTO {
+	{field} +password : String
+	{field} +registration : String
+}
+
+
+class mirante.api.security.AccountDetailsService {
+	{method} +findByToken ( token : String ) : java.util.Optional
+	{method} +loadUserByUsername ( registration : String ) : org.springframework.security.core.userdetails.UserDetails
+	{method} +login ( registration : String , password : String ) : java.util.Optional
+}
+
+
 class mirante.api.security.AuthenticationController {
 	{method} ~authHealth () : void
-	{method} ~getToken ( request : mirante.api.account.AccountDTO ) : String
+	{method} ~getToken ( request : mirante.api.security.AccountDetailsDTO ) : org.springframework.http.ResponseEntity
 	{method} ~newAccount ( request : mirante.api.account.AccountDTO ) : mirante.api.account.Account
 	{method} ~tokenHealth () : void
 }
@@ -149,7 +169,7 @@ class mirante.api.security.SecUtils {
 
 
 class mirante.api.security.SecurityConfiguration {
-	{method} +authenticationManager ( userDetailsService : org.springframework.security.core.userdetails.UserDetailsService , passwordEncoder : org.springframework.security.crypto.password.PasswordEncoder ) : org.springframework.security.authentication.AuthenticationManager
+	{method} +authenticationManager ( accountDetailsService : mirante.api.security.AccountDetailsService , passwordEncoder : org.springframework.security.crypto.password.PasswordEncoder ) : org.springframework.security.authentication.AuthenticationManager
 	{method} +filterChain ( http : org.springframework.security.config.annotation.web.builders.HttpSecurity ) : org.springframework.security.web.SecurityFilterChain
 	{method} +passwordEncoder () : org.springframework.security.crypto.password.PasswordEncoder
 	{method} +userDetailsService () : org.springframework.security.core.userdetails.UserDetailsService
@@ -158,7 +178,6 @@ class mirante.api.security.SecurityConfiguration {
 
 
 
-mirante.api.account.AccountService -->  mirante.api.account.AccountRepository : accountRepository
 mirante.api.exercise.Exercise "1" o-- "0..*"  mirante.api.exercise.option.Option : options
 mirante.api.exercise.Exercise -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
 mirante.api.exercise.ExerciseDTO "1" o-- "0..*"  mirante.api.exercise.option.OptionDTO : options
@@ -170,8 +189,10 @@ mirante.api.exercise.set.ExerciseSetDTO "1" o-- "0..*"  mirante.api.exercise.Exe
 mirante.api.exercise.set.ExerciseSetDTO -->  mirante.api.exercise.set.Access : access
 mirante.api.meta.MetaController -->  mirante.api.meta.MetaController$MetaData : metadata
 mirante.api.result.Result -->  mirante.api.exercise.set.ExerciseSet :  @ManyToOne\nset
+mirante.api.security.AccountDetails -->  mirante.api.account.Account : account
+mirante.api.security.AccountDetailsService -->  mirante.api.account.AccountRepository : repository
 mirante.api.security.AuthenticationController *--  mirante.api.account.AccountRepository : repository
-mirante.api.security.AuthenticationController -->  mirante.api.account.AccountService : accountService
+mirante.api.security.AuthenticationController -->  mirante.api.security.AccountDetailsService : accountDetailsService
 
 
 @enduml

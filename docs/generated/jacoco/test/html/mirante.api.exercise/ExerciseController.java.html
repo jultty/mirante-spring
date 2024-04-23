@@ -14,9 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 public class ExerciseController {
   private final ExerciseRepository repository;
 
-<span class="fc" id="L17">  ExerciseController(ExerciseRepository repository) {</span>
-<span class="fc" id="L18">    this.repository = repository;</span>
-<span class="fc" id="L19">  }</span>
+<span class="nc" id="L17">  ExerciseController(ExerciseRepository repository) {</span>
+<span class="nc" id="L18">    this.repository = repository;</span>
+<span class="nc" id="L19">  }</span>
 
   @GetMapping(&quot;/exercise&quot;)
   List&lt;ExerciseDTO&gt; getExercises() {
