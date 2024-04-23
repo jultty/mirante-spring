@@ -39,7 +39,7 @@ public class Account {
     return SecUtils.encoder.matches(password, this.password);
   }
 
-  public String getPassword() { return this.password; }
+  public String getPassword() { return password; }
   public void setPassword(String old_password, String new_password) {
     if (SecUtils.encoder.matches(old_password, this.password)) {
       this.password = SecUtils.encoder.encode(new_password);
