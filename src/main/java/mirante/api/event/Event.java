@@ -1,6 +1,6 @@
 package mirante.api.event;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,13 +14,13 @@ public class Event {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  @JsonProperty("time") private Timestamp time;
+  @JsonProperty("time") private Instant time;
   @JsonProperty("description") private String description;
   @JsonProperty("content") private String content;
 
   public Event() {}
 
-  public Event(Timestamp time, String description, String content) {
+  public Event(Instant time, String description, String content) {
     this.time = time;
     this.description = description;
     this.content = content;
