@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +22,9 @@ public class SecurityConfiguration {
 
     http
       .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**"))
-      .authorizeHttpRequests(authorize -> authorize
+      .securityContext(context -> context.securityContextRepository(
+          new RequestAttributeSecurityContextRepository())
+      ).authorizeHttpRequests(authorize -> authorize
       .requestMatchers("/version", "/auth/**", "/api-docs/**").permitAll()
       .anyRequest().authenticated()
     );
