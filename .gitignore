@@ -33,6 +33,7 @@ bin/
 kls_database.db
 
 ### IDEs
+.settings
 
 # VS Code
 .vscode/
@@ -53,3 +54,7 @@ out/
 /nbdist/
 /.nb-gradle/
 gradle.properties
+
+### Tooling
+.dccache
+.devbox
