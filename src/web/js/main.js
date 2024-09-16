@@ -167,4 +167,3 @@ function extractExerciseSets(data) {
 
   return Object.values(uniqueExerciseSets);
 }
-
