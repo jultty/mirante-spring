@@ -15,4 +15,5 @@ HTTP 403
 
 # account endpoint returns 200 if authenticated
 GET http://localhost:8889/account
+Authorization: Basic {{token}}
 HTTP 200

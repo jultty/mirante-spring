@@ -24,9 +24,13 @@ public class SecurityConfiguration {
       .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**"))
       .securityContext(context -> context.securityContextRepository(
           new RequestAttributeSecurityContextRepository())
-      ).authorizeHttpRequests(authorize -> authorize
-      .requestMatchers("/version", "/auth/**", "/api-docs/**").permitAll()
-      .anyRequest().authenticated()
+      ).authorizeHttpRequests(request -> request
+                .requestMatchers("/version", "/auth/**", "/api-docs/**")
+                .permitAll()
+                .anyRequest().authenticated()
+
+      // .addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtUtil))
+      // .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
     );
 
     return http.build();
